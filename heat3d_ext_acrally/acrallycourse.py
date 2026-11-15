@@ -335,7 +335,7 @@ def export(driven, target: Path, args, *, paks: Path | None = None) -> int:
             "folder with --install.",
             file=sys.stderr,
         )
-        return 1
+        return 2
     try:
         store = Store(paks)
     except IoStoreError as exc:
@@ -349,7 +349,7 @@ def export(driven, target: Path, args, *, paks: Path | None = None) -> int:
         match = next((s for s in list_stages(packages) if s.lower() == wanted.lower()), None)
         if match is None:
             print(f"no stage called {wanted!r}; there are: {', '.join(list_stages(packages))}", file=sys.stderr)
-            return 1
+            return 2
         wanted = match
     best, tried = None, []
     named = _named_stage(packages, getattr(driven, "track", None)) if not wanted else None
@@ -368,7 +368,7 @@ def export(driven, target: Path, args, *, paks: Path | None = None) -> int:
             + ". Name the stage with --level.",
             file=sys.stderr,
         )
-        return 1
+        return 2
     frame = best.frame
     print(f"  on {best.stage}: {best.score:.0%} of the lap lies on its road, read as {describe_frame(frame)}")
 

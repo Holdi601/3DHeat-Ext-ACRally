@@ -77,7 +77,8 @@ heat3d-acrally-maps course my_run.json --install "D:\Games\Assetto Corsa Rally" 
 | `--track`, `--season` | Forza only: accepted, so 3DHeat GameFiles can pass its arguments on unchanged, and ignored |
 
 Exit status: 0 done; 1 reading or writing failed; 2 nothing found - no
-install, no such stage, not an AC Rally lap or file, GameFiles or Oodle missing
+install, no such stage, a lap on no stage's road, not an AC Rally lap or file,
+GameFiles or Oodle missing
 (the message says which, and what to do). Every option, as the program prints
 it: [Command reference](https://holdi601.github.io/3DHeat-Ext-ACRally/cli-reference.html).
 

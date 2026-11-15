@@ -24,7 +24,7 @@ from heat3d_ext_acrally.acrallycourse import (
     placed_part,
 )
 from heat3d_gamefiles.iostore import Container, IoStoreError, Store
-from heat3d_gamefiles.unrealtexture import _morton, bulk_map
+from heat3d_gamefiles.unrealtexture import bulk_map, morton as _morton
 from heat3d_gamefiles.unversioned import PropertyError, read_header, read_properties, schema, CHAINS
 from heat3d_gamefiles.zen import Package, Packages
 
