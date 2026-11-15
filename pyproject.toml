@@ -21,4 +21,4 @@ test = ["pytest>=8.0"]
 heat3d-acrally-maps = "heat3d_ext_acrally.cli:main"
 
 [tool.setuptools]
-packages = ["heat3d_ext_acrally", "heat3d_update"]
+packages = ["heat3d_ext_acrally"]

@@ -257,9 +257,9 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{PROG}: {NEEDED}", file=sys.stderr)
         return 2
     try:
-        import heat3d_update
+        from . import update
 
-        heat3d_update.startup("heat3d_ext_acrally")
+        update.startup("heat3d_ext_acrally")
     except Exception:  # an update check never stops an export
         pass
     ap = argparse.ArgumentParser(
