@@ -3,7 +3,7 @@ title: "Assetto Corsa Rally"
 nav_order: 3
 lang: "fr"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -16,16 +16,16 @@ l'étape et l'orientation des axes à partir du tour. Il écrit les tuiles de so
 l'étape. Il place les autres modèles en couleurs unies, par catégorie.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Sources : [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (installation, étapes, placement),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (l'export).
-Les lecteurs Unreal sous-jacents sont décrits dans [Unreal 5 IoStore](reader-unreal-iostore.md),
-et la décompression dans [Oodle](reader-oodle.md).
+Sources : [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (installation, étapes, placement),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (l'export).
+Les lecteurs Unreal sous-jacents sont décrits dans [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/fr/reader-unreal-iostore.html),
+et la décompression dans [Oodle](https://holdi601.github.io/3DHeat-GameFiles/fr/reader-oodle.html).
 
 **Statut :** testé sur le jeu installé avec des tours générés à une image aléatoire sur
 chaque étape. Il a trouvé à chaque fois la bonne étape et la bonne image. Aucun tour
@@ -42,7 +42,7 @@ enregistré dans le jeu lui-même n'a encore été passé dedans.
   s'ouvrent pas sont sautés. Si aucun ne s'ouvre : « no readable IoStore containers in ... ».
 
 La plupart des blocs sont compressés en Oodle, et une bibliothèque est cherchée sur la
-machine (toutes les bibliothèques Steam sont parcourues). Voir [Oodle](reader-oodle.md).
+machine (toutes les bibliothèques Steam sont parcourues). Voir [Oodle](https://holdi601.github.io/3DHeat-GameFiles/fr/reader-oodle.html).
 
 Le jeu est reconnu comme AC Rally quand le fichier de tour contient
 `"game": "assetto-corsa-rally"` (ou `acrally`), ou quand vous passez `--game acrally`.
@@ -77,7 +77,7 @@ monde.
 - Les propriétés sont **sans version** : stockées par position dans la liste de
   propriétés de la classe, et non par nom. Elles sont lues avec les schémas de
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (voir [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (voir [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/fr/reader-unreal-iostore.html#unversioned-properties)).
 - Une valeur égale à celle du modèle du composant (son archetype dans un Blueprint) n'est
   pas stockée. Les valeurs du modèle sont donc lues d'abord, récursivement, et les
   valeurs propres du composant les remplacent.
@@ -185,7 +185,7 @@ maillage (la première correspondance l'emporte) :
 
 - Une copie est considérée si son origine est dans le couloir d'atteinte (`margin + 60 m`)
   et dessinée si ses limites touchent le couloir.
-- Les niveaux de détail suivent [Niveaux de détail et budget](detail-budget.md) : des
+- Les niveaux de détail suivent [Niveaux de détail et budget](https://holdi601.github.io/3DHeat-GameFiles/fr/detail-budget.html) : des
   bandes de distance, puis les modèles les plus coûteux descendent d'un cran pour tenir
   dans le budget. Quand même les niveaux les plus grossiers dépassent, les copies les plus
   lointaines sont laissées de côté, comme dans BeamNG, jusqu'à ce que ça tienne. Les

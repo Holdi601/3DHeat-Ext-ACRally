@@ -3,7 +3,7 @@ title: Assetto Corsa Rally
 nav_order: 3
 lang: "sr"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -12,16 +12,16 @@ search_exclude: true
 Assetto Corsa Rally је направљен на Unreal Engine 5 (5.6.1, измењена верзија) и свој садржај испоручује као IoStore контејнере. Ниједан није шифрован. Извоз сам налази деоницу и оријентацију осе из круга. Затим записује сопствене плочице терена деонице, подељене на пут и терен и обојене печеном бојом тла деонице, а остале моделе ставља у равним бојама по категоријама.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Извори: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (инсталација, деонице, постављање),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (извоз).
-Unreal читачи испод су на [Unreal 5 IoStore](reader-unreal-iostore.md),
-а декомпресија на [Oodle](reader-oodle.md).
+Извори: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (инсталација, деонице, постављање),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (извоз).
+Unreal читачи испод су на [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/sr/reader-unreal-iostore.html),
+а декомпресија на [Oodle](https://holdi601.github.io/3DHeat-GameFiles/sr/reader-oodle.html).
 
 **Стање:** проверено на инсталираној игри, са круговима направљеним у насумичном кадру на свакој деоници. Пронашао је праву деоницу и кадар сваки пут. Још ниједан круг снимљен у самој игри није прошао кроз њега.
 
@@ -31,7 +31,7 @@ Unreal читачи испод су на [Unreal 5 IoStore](reader-unreal-iostor
 - Иначе се у свакој Steam библиотеци проверава `steamapps\common\Assetto Corsa Rally` на исти начин.
 - Свака `.utoc` датотека у тој фасцикли отвара се као једна продавница. Контејнери који не могу да се отворе се прескачу. Ако се ниједан не отвори: „no readable IoStore containers in ...“.
 
-Већина блокова је компресована Oodle-ом, а библиотека се тражи на рачунару (претражује се свака Steam библиотека). Видите [Oodle](reader-oodle.md).
+Већина блокова је компресована Oodle-ом, а библиотека се тражи на рачунару (претражује се свака Steam библиотека). Видите [Oodle](https://holdi601.github.io/3DHeat-GameFiles/sr/reader-oodle.html).
 
 Игра се узима као AC Rally кад фајл круга каже `"game": "assetto-corsa-rally"` (или `acrally`), или кад проследите `--game acrally`.
 
@@ -56,7 +56,7 @@ Unreal читачи испод су на [Unreal 5 IoStore](reader-unreal-iostor
 Мрежа се поставља помоћу `StaticMeshComponent`-а: његов `StaticMesh`, и његови `RelativeLocation`, `RelativeRotation` и `RelativeScale3D`, сваки у односу на компоненту за коју је закачен (`AttachParent`), све до корена актора, који је у свету.
 
 - Особине су **неверзионисане**: чувају се по положају у списку особина класе, а не по имену. Читају се шемама из [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (видите [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (видите [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/sr/reader-unreal-iostore.html#unversioned-properties)).
 - Вредност која је једнака вредности шаблона компоненте (њеног архетипа у Blueprint-у) не чува се, па се прво рекурзивно читају вредности шаблона, а властите вредности компоненте их прегазе.
 - Компоненте са `bVisible = 0` или `bHiddenInGame = 1` се прескачу. Прескачу се и мреже чија путања садржи `respawnwall`, `collision`, `blocker`, `invisible`, `/hlod/` или `_hlod`.
 - Ротације користе Unreal-ов `FRotationMatrix` (pitch, yaw, roll у степенима).
@@ -121,7 +121,7 @@ Unreal читачи испод су на [Unreal 5 IoStore](reader-unreal-iostor
 | предмети | све остало |
 
 - Копија се разматра ако јој је порекло у коридору досега (`margin + 60 m`), и црта се ако њене границе додирују коридор.
-- Нивои детаља следе [Нивои детаља и буџет](detail-budget.md): опсези удаљености, па најскупљи модели прелазе на грубље нивое да би стали у буџет. Тамо где ни најгрубљи нивои не стају, најудаљеније копије се изостављају, као у BeamNG-у, док не стане. Ивичњаци задржавају пун детаљ и никад се не изостављају. Резиме исписује `placed on it (N triangles of a B budget)` и, кад су копије отишле, `N copies left out to fit the budget, the furthest from the driving first`.
+- Нивои детаља следе [Нивои детаља и буџет](https://holdi601.github.io/3DHeat-GameFiles/sr/detail-budget.html): опсези удаљености, па најскупљи модели прелазе на грубље нивое да би стали у буџет. Тамо где ни најгрубљи нивои не стају, најудаљеније копије се изостављају, као у BeamNG-у, док не стане. Ивичњаци задржавају пун детаљ и никад се не изостављају. Резиме исписује `placed on it (N triangles of a B budget)` и, кад су копије отишле, `N copies left out to fit the budget, the furthest from the driving first`.
 - Свака категорија је један део у равној боји: `ground:kerbs` за ивичњаке, који су површина за вожњу, као у Forza и BeamNG-у, а `structure:<category>` за остало:
 
 | Категорија | Боја (линеарни RGB) |

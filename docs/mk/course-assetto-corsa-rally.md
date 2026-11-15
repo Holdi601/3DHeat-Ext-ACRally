@@ -3,7 +3,7 @@ title: "Assetto Corsa Rally"
 nav_order: 3
 lang: "mk"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -16,16 +16,16 @@ Assetto Corsa Rally е изграден на Unreal Engine 5 (5.6.1, измен�
 на етапата, а другите модели ги поставува во рамни бои по категорија.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Извори: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (инсталација, етапи, поставување),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (извозот).
-Unreal читачите под него се на [Unreal 5 IoStore](reader-unreal-iostore.md),
-а декомпресијата на [Oodle](reader-oodle.md).
+Извори: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (инсталација, етапи, поставување),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (извозот).
+Unreal читачите под него се на [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/mk/reader-unreal-iostore.html),
+а декомпресијата на [Oodle](https://holdi601.github.io/3DHeat-GameFiles/mk/reader-oodle.html).
 
 **Статус:** проверено на инсталирана игра со кругови создадени во случајна рамка на
 секоја етапа, и секогаш ја најде правилната етапа и рамка. Досега не е поминат круг
@@ -42,7 +42,7 @@ Unreal читачите под него се на [Unreal 5 IoStore](reader-unre
   се отвораат се прескокнуваат. Ако ниту еден не се отвори: „no readable IoStore containers in ...“.
 
 Повеќето блокови се компресирани со Oodle, па се бара библиотека на машината (се
-пребарува секоја Steam библиотека). Видете [Oodle](reader-oodle.md).
+пребарува секоја Steam библиотека). Видете [Oodle](https://holdi601.github.io/3DHeat-GameFiles/mk/reader-oodle.html).
 
 Играта се зема како AC Rally кога датотеката на кругот содржи `"game": "assetto-corsa-rally"`
 (или `acrally`), или кога ќе го зададете `--game acrally`.
@@ -77,7 +77,7 @@ Unreal читачите под него се на [Unreal 5 IoStore](reader-unre
 - Својствата се **неверзионирани**: зачувани по позиција во листата на својства на
   класата, а не по име. Се читаат со шемите во
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (видете [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (видете [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/mk/reader-unreal-iostore.html#unversioned-properties)).
 - Вредност еднаква на шаблонот на компонентата (нејзиниот архетип во Blueprint) не се
   зачувува, па вредностите на шаблонот се читаат први, рекурзивно, а сопствените
   вредности на компонентата ги заменуваат.
@@ -184,7 +184,7 @@ Unreal читачите под него се на [Unreal 5 IoStore](reader-unre
 
 - Копија се разгледува ако нејзиното потекло е во коридорот на досег (`margin + 60 m`)
   и се црта ако нејзините граници го допираат коридорот.
-- Нивоата на детали го следат [Нивоа на детали и буџетот](detail-budget.md): појаси на
+- Нивоата на детали го следат [Нивоа на детали и буџетот](https://holdi601.github.io/3DHeat-GameFiles/mk/detail-budget.html): појаси на
   растојание, па најскапите модели се спуштаат за да се вклопат во буџетот. Таму каде
   што и најгрубите нивоа го надминуваат, најоддалечените копии се изоставуваат, како кај
   BeamNG, додека не се вклопи. Рабниците задржуваат полна детаљност и никогаш не се

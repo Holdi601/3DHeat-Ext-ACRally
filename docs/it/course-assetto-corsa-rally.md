@@ -3,7 +3,7 @@ title: Assetto Corsa Rally
 nav_order: 3
 lang: "it"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -16,16 +16,16 @@ strada e terreno e texturizzate con il colore del suolo pre-calcolato della tapp
 modelli a colori piatti per categoria.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Sorgenti: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (installazione, tappe, posizionamento),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (l'esportazione).
-I lettori Unreal sottostanti sono descritti in [Unreal 5 IoStore](reader-unreal-iostore.md),
-e la decompressione in [Oodle](reader-oodle.md).
+Sorgenti: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (installazione, tappe, posizionamento),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (l'esportazione).
+I lettori Unreal sottostanti sono descritti in [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/it/reader-unreal-iostore.html),
+e la decompressione in [Oodle](https://holdi601.github.io/3DHeat-GameFiles/it/reader-oodle.html).
 
 **Stato:** verificato sul gioco installato con giri generati in un sistema di riferimento casuale su ogni tappa, e
 ha trovato la tappa e il sistema di riferimento giusti ogni volta. Nessun giro registrato nel gioco stesso è ancora
@@ -42,7 +42,7 @@ passato da qui.
   aprono vengono saltati. Se nessuno si apre: "no readable IoStore containers in ...".
 
 La maggior parte dei blocchi è compressa con Oodle, e per averne una libreria viene cercata sul computer
-(in ogni libreria Steam). Vedi [Oodle](reader-oodle.md).
+(in ogni libreria Steam). Vedi [Oodle](https://holdi601.github.io/3DHeat-GameFiles/it/reader-oodle.html).
 
 Il gioco viene riconosciuto come AC Rally quando il file del giro dice `"game": "assetto-corsa-rally"`
 (o `acrally`), oppure quando passi `--game acrally`.
@@ -76,7 +76,7 @@ Ciò che colloca una mesh è un `StaticMeshComponent`: la sua `StaticMesh`, e i 
 - Le proprietà sono **non versionate**: memorizzate per posizione nell'elenco delle proprietà della
   classe, non per nome. Vengono lette con gli schemi di
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (vedi [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (vedi [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/it/reader-unreal-iostore.html#unversioned-properties)).
 - Un valore uguale a quello del modello del componente (il suo archetipo in un Blueprint) non viene
   memorizzato, quindi prima si leggono ricorsivamente i valori del modello, e i valori propri del
   componente li sovrascrivono.
@@ -177,7 +177,7 @@ prima corrispondenza):
 
 - Una copia viene considerata se la sua origine sta nel corridoio di portata (`margin + 60 m`) e viene
   disegnata se i suoi limiti toccano il corridoio.
-- I livelli di dettaglio seguono [Livelli di dettaglio e budget](detail-budget.md): fasce di distanza, poi
+- I livelli di dettaglio seguono [Livelli di dettaglio e budget](https://holdi601.github.io/3DHeat-GameFiles/it/detail-budget.html): fasce di distanza, poi
   i modelli più costosi scendono di livello per entrare nel budget. Dove anche i livelli più grossolani
   superano il budget, le copie più lontane vengono escluse, come in BeamNG, finché non entrano. I cordoli
   mantengono il pieno dettaglio e non vengono mai esclusi. Il riepilogo stampa

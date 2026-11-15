@@ -3,7 +3,7 @@ title: Assetto Corsa Rally
 nav_order: 3
 lang: "sk"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -16,16 +16,16 @@ na cestu a terén a potiahnuté texturou z pečenej farby povrchu etapy, a ostat
 modely umiestni v plošných farbách podľa kategórie.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Zdroje: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (inštalácia, etapy, umiestnenie),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (export).
-Čítačky Unreal pod ním sú opísané na stránke [Unreal 5 IoStore](reader-unreal-iostore.md),
-dekompresia na stránke [Oodle](reader-oodle.md).
+Zdroje: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (inštalácia, etapy, umiestnenie),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (export).
+Čítačky Unreal pod ním sú opísané na stránke [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/sk/reader-unreal-iostore.html),
+dekompresia na stránke [Oodle](https://holdi601.github.io/3DHeat-GameFiles/sk/reader-oodle.html).
 
 **Stav:** overené na nainštalovanej hre s kolami vygenerovanými v náhodnom
 snímku na každej etape; vždy našiel správnu etapu a snímok. Zatiaľ žiadne kolo
@@ -43,7 +43,7 @@ zaznamenané priamo v hre neprešlo týmto exportom.
   „no readable IoStore containers in ...“.
 
 Väčšina blokov je komprimovaná cez Oodle a knižnica sa hľadá v počítači (prehľadajú
-sa všetky knižnice Steam). Pozri [Oodle](reader-oodle.md).
+sa všetky knižnice Steam). Pozri [Oodle](https://holdi601.github.io/3DHeat-GameFiles/sk/reader-oodle.html).
 
 Hra sa berie ako AC Rally, keď kolo hovorí `"game": "assetto-corsa-rally"` (alebo
 `acrally`), alebo keď zadáte `--game acrally`.
@@ -79,7 +79,7 @@ vo svete.
 - Vlastnosti sú **neverzované**: uložené podľa pozície v zozname vlastností triedy,
   nie podľa mena. Čítajú sa so schémami v súbore
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (pozri [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (pozri [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/sk/reader-unreal-iostore.html#unversioned-properties)).
 - Hodnota rovnaká ako šablóna komponentu (jeho archetyp v Blueprinte) sa neukladá,
   preto sa najprv rekurzívne čítajú hodnoty šablóny a vlastné hodnoty komponentu ich
   prepíšu.
@@ -182,7 +182,7 @@ Každé umiestnenie, ktoré nie je dlaždicou povrchu, sa zaradí podľa cesty k
 
 - Kópia sa zvažuje, ak jej začiatok leží v koridore dosahu (`margin + 60 m`),
   a kreslí sa, ak jej hranice zasahujú do koridora.
-- Úrovne detailu nasledujú [Úrovne detailu a rozpočet](detail-budget.md):
+- Úrovne detailu nasledujú [Úrovne detailu a rozpočet](https://holdi601.github.io/3DHeat-GameFiles/sk/detail-budget.html):
   pásma vzdialenosti, potom sa najdrahšie modely znížia, aby sa zmestili do rozpočtu.
   Ak ani najhrubšie úrovne rozpočet neprekročia, najvzdialenejšie kópie sa vynechajú
   ako v BeamNG, kým to nevyjde. Obrubníky si zachovávajú plný detail a nikdy sa

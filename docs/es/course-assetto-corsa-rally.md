@@ -3,7 +3,7 @@ title: Assetto Corsa Rally
 nav_order: 3
 lang: "es"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -12,16 +12,16 @@ search_exclude: true
 Assetto Corsa Rally está construido sobre Unreal Engine 5 (5.6.1, una versión modificada) y distribuye su contenido en contenedores IoStore. Ninguno está cifrado. La exportación encuentra la etapa y la orientación de los ejes a partir de la vuelta. Escribe las losetas de suelo propias de la etapa, separadas en carretera y terreno, y texturizadas con el color de suelo horneado de la etapa. Los demás objetos los coloca en colores planos por categoría.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Fuentes: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (instalación, etapas, colocación),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (la exportación).
-Los lectores de Unreal en los que se apoya están en [Unreal 5 IoStore](reader-unreal-iostore.md),
-y la descompresión, en [Oodle](reader-oodle.md).
+Fuentes: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (instalación, etapas, colocación),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (la exportación).
+Los lectores de Unreal en los que se apoya están en [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/es/reader-unreal-iostore.html),
+y la descompresión, en [Oodle](https://holdi601.github.io/3DHeat-GameFiles/es/reader-oodle.html).
 
 **Estado:** comprobado con el juego instalado, con vueltas generadas en un fotograma aleatorio en cada etapa, y encontró la etapa y el fotograma correctos en todos los casos. Todavía no ha pasado por ella ninguna vuelta grabada en el propio juego.
 
@@ -31,7 +31,7 @@ y la descompresión, en [Oodle](reader-oodle.md).
 - Si no, se revisa de la misma forma `steamapps\common\Assetto Corsa Rally` en cada biblioteca de Steam.
 - Cada `.utoc` de esa carpeta se abre como un único almacén. Los contenedores que no se pueden abrir se omiten. Si ninguno se abre: `no readable IoStore containers in ...`.
 
-La mayoría de los bloques están comprimidos con Oodle, y se busca una biblioteca en el equipo (se busca en cada biblioteca de Steam). Ver [Oodle](reader-oodle.md).
+La mayoría de los bloques están comprimidos con Oodle, y se busca una biblioteca en el equipo (se busca en cada biblioteca de Steam). Ver [Oodle](https://holdi601.github.io/3DHeat-GameFiles/es/reader-oodle.html).
 
 El juego se toma como AC Rally cuando el archivo de la vuelta dice `"game": "assetto-corsa-rally"` (o `acrally`), o cuando pasas `--game acrally`.
 
@@ -57,7 +57,7 @@ Lo que coloca una malla es un `StaticMeshComponent`: su `StaticMesh`, y su `Rela
 
 - Las propiedades son **sin versión (unversioned)**: se guardan por posición en la lista de propiedades de la clase, no por nombre. Se leen con los esquemas de
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (ver [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (ver [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/es/reader-unreal-iostore.html#unversioned-properties)).
 - Un valor igual a la plantilla del componente (su archetype en un Blueprint) no se guarda, así que primero se leen los valores de la plantilla, recursivamente, y los valores propios del componente los sustituyen.
 - Se omiten los componentes con `bVisible = 0` o `bHiddenInGame = 1`. También se omiten las mallas cuya ruta contiene `respawnwall`, `collision`, `blocker`, `invisible`, `/hlod/` o `_hlod`.
 - Las rotaciones usan `FRotationMatrix` de Unreal (pitch, yaw, roll en grados).
@@ -119,7 +119,7 @@ Cada colocación que no es una loseta de suelo se clasifica por su ruta de malla
 | objetos (props) | cualquier otra cosa |
 
 - Una copia se considera si su origen está en el corredor de alcance (`margin + 60 m`), y se dibuja si sus límites tocan el corredor.
-- Los niveles de detalle siguen a [Niveles de detalle y presupuesto](detail-budget.md): primero bandas de distancia, y luego los modelos más costosos bajan de nivel para encajar en el presupuesto de triángulos. Donde incluso los niveles más gruesos lo superan, se dejan fuera las copias más lejanas, como en BeamNG, hasta que encaja. Los bordillos mantienen el detalle completo y nunca se dejan fuera. El resumen imprime `placed on it (N triangles of a B budget)` y, cuando se han quitado copias, `N copies left out to fit the budget, the furthest from the driving first`.
+- Los niveles de detalle siguen a [Niveles de detalle y presupuesto](https://holdi601.github.io/3DHeat-GameFiles/es/detail-budget.html): primero bandas de distancia, y luego los modelos más costosos bajan de nivel para encajar en el presupuesto de triángulos. Donde incluso los niveles más gruesos lo superan, se dejan fuera las copias más lejanas, como en BeamNG, hasta que encaja. Los bordillos mantienen el detalle completo y nunca se dejan fuera. El resumen imprime `placed on it (N triangles of a B budget)` y, cuando se han quitado copias, `N copies left out to fit the budget, the furthest from the driving first`.
 - Cada categoría es una parte en color plano: `ground:kerbs` para los bordillos, que son superficie de conducción, como en Forza y BeamNG, y `structure:<category>` para el resto:
 
 | Categoría | Color (RGB lineal) |

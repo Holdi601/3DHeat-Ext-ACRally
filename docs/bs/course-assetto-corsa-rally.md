@@ -3,7 +3,7 @@ title: "Assetto Corsa Rally"
 nav_order: 3
 lang: "bs"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -16,16 +16,16 @@ podijeljene na cestu i teren i teksturirane iz pečene boje tla te etape, a osta
 modele postavlja u ravnim bojama po kategorijama.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Izvori: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (instalacija, etape, postavljanje),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (izvoz).
-Unreal čitači ispod toga opisani su na stranici [Unreal 5 IoStore](reader-unreal-iostore.md),
-a dekompresija na stranici [Oodle](reader-oodle.md).
+Izvori: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (instalacija, etape, postavljanje),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (izvoz).
+Unreal čitači ispod toga opisani su na stranici [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/bs/reader-unreal-iostore.html),
+a dekompresija na stranici [Oodle](https://holdi601.github.io/3DHeat-GameFiles/bs/reader-oodle.html).
 
 **Status:** provjereno na instaliranoj igri s krugovima generiranim u nasumičnom
 okviru na svakoj etapi, i svaki put je pronašlo ispravnu etapu i okvir. Nijedan
@@ -42,7 +42,7 @@ krug snimljen u samoj igri još nije prošao kroz njega.
   otvore preskaču se. Ako se nijedan ne otvori: "no readable IoStore containers in ...".
 
 Većina blokova je komprimirana Oodleom, a biblioteka se traži na računaru
-(pretražuje se svaka Steam biblioteka). Pogledajte [Oodle](reader-oodle.md).
+(pretražuje se svaka Steam biblioteka). Pogledajte [Oodle](https://holdi601.github.io/3DHeat-GameFiles/bs/reader-oodle.html).
 
 Igra se smatra AC Rally kad datoteka kruga kaže `"game": "assetto-corsa-rally"`
 (ili `acrally`), ili kad predate `--game acrally`.
@@ -76,7 +76,7 @@ je zakačen (`AttachParent`), sve do korijena aktora, koji je u svijetu.
 - Svojstva su **neverzionirana**: pohranjena po poziciji u listi svojstava klase,
   a ne po imenu. Čitaju se pomoću shema u
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (pogledajte [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (pogledajte [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/bs/reader-unreal-iostore.html#unversioned-properties)).
 - Vrijednost jednaka predlošku komponente (njenom arhetipu u Blueprintu) nije
   pohranjena, pa se vrijednosti predloška čitaju prve, rekurzivno, a vlastite
   vrijednosti komponente ih nadjačavaju.
@@ -182,7 +182,7 @@ Svako postavljanje koje nije pločica tla razvrstava se po putanji njegove mrež
 
 - Kopija se razmatra ako je njeno ishodište u koridoru dosega (`margin + 60 m`),
   a crta se ako njene granice dodiruju koridor.
-- Nivoi detalja slijede [Nivoi detalja i budžet](detail-budget.md): pojasevi
+- Nivoi detalja slijede [Nivoi detalja i budžet](https://holdi601.github.io/3DHeat-GameFiles/bs/detail-budget.html): pojasevi
   udaljenosti, zatim najskuplji modeli silaze nivo niže da stanu u budžet. Gdje i
   najgrubljim nivoima budžet bude prekoračen, najudaljenije kopije se izostavljaju,
   kao u BeamNG-u, dok ne stane. Ivičnjaci zadržavaju puni detalj i nikad se ne

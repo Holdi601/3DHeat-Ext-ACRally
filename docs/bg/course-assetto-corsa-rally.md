@@ -3,7 +3,7 @@ title: "Assetto Corsa Rally"
 nav_order: 3
 lang: "bg"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -12,16 +12,16 @@ search_exclude: true
 Assetto Corsa Rally е построена на Unreal Engine 5 (5.6.1, модифицирана версия) и разпространява съдържанието си като контейнери IoStore. Никой от тях не е криптиран. Експортът намира етапа и ориентацията на осите от обиколката. Записва собствените земни плочки на етапа, разделени на път и терен и текстурирани от запечатания цвят на земята на етапа, а останалите модели слага в плоски цветове по категория.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <име на картата на етапа>
-python -m heat3d_gamefiles course rally_lap.json --level x      # грешно име показва етапите
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <име на картата на етапа>
+heat3d-acrally-maps course rally_lap.json --level x      # грешно име показва етапите
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Източници: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (инсталация, етапи, разполагане),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (самият експорт).
-Unreal четците отдолу са описани в [Unreal 5 IoStore](reader-unreal-iostore.md),
-а декомпресията — в [Oodle](reader-oodle.md).
+Източници: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (инсталация, етапи, разполагане),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (самият експорт).
+Unreal четците отдолу са описани в [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/bg/reader-unreal-iostore.html),
+а декомпресията — в [Oodle](https://holdi601.github.io/3DHeat-GameFiles/bg/reader-oodle.html).
 
 **Състояние:** проверено на инсталираната игра с обиколки, генерирани в произволен кадър на всеки етап, и във всеки случай намира правилния етап и кадър. Още никоя обиколка, записана в самата игра, не е минавала през него.
 
@@ -31,7 +31,7 @@ Unreal четците отдолу са описани в [Unreal 5 IoStore](rea
 - Иначе се проверява `steamapps\common\Assetto Corsa Rally` във всяка библиотека на Steam, по същия начин.
 - Всеки `.utoc` в тази папка се отваря като едно хранилище. Контейнерите, които не се отварят, се пропускат. Ако нито един не се отвори: „no readable IoStore containers in ...“.
 
-Повечето блокове са компресирани с Oodle, а библиотека се търси на машината (претърсват се всички библиотеки на Steam). Вижте [Oodle](reader-oodle.md).
+Повечето блокове са компресирани с Oodle, а библиотека се търси на машината (претърсват се всички библиотеки на Steam). Вижте [Oodle](https://holdi601.github.io/3DHeat-GameFiles/bg/reader-oodle.html).
 
 Играта се приема за AC Rally, когато файлът с обиколката казва `"game": "assetto-corsa-rally"` (или `acrally`), или когато подадеш `--game acrally`.
 
@@ -55,7 +55,7 @@ Unreal четците отдолу са описани в [Unreal 5 IoStore](rea
 
 Какво разполага една мрежа е `StaticMeshComponent`: нейният `StaticMesh` и нейните `RelativeLocation`, `RelativeRotation` и `RelativeScale3D`, всяко спрямо компонента, към който е прикачен (`AttachParent`), нагоре до корена на актьора, който е в света.
 
-- Свойствата са **неверсионирани**: записани са по позиция в списъка със свойства на класа, а не по име. Четат се със схемите в [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py) (вижте [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+- Свойствата са **неверсионирани**: записани са по позиция в списъка със свойства на класа, а не по име. Четат се със схемите в [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py) (вижте [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/bg/reader-unreal-iostore.html#unversioned-properties)).
 - Стойност, която е равна на шаблона на компонента (неговия archetype в Blueprint), не се записва, затова първо се четат стойностите на шаблона, рекурсивно, а собствените стойности на компонента ги заместват.
 - Компонентите с `bVisible = 0` или `bHiddenInGame = 1` се пропускат. Също и мрежите, чийто път съвпада с `respawnwall`, `collision`, `blocker`, `invisible`, `/hlod/` или `_hlod`.
 - Завъртанията следват `FRotationMatrix` на Unreal (наклон, рис, търкаляне в градуси).
@@ -120,7 +120,7 @@ Unreal четците отдолу са описани в [Unreal 5 IoStore](rea
 | реквизит | всичко останало |
 
 - Копие се разглежда, ако началото му е в коридора за достъп (`margin + 60 m`), и се рисува, ако границите му докосват коридора.
-- Степените на детайл следват [Нива на детайл и бюджетът](detail-budget.md): дистанционни пояси, после най-скъпите модели слизат, за да се вмести бюджетът. Там, където дори най-грубите нива го надвишават, най-отдалечените копия се пропускат, както при BeamNG, докато се вместят. Бордюрите пазят пълния детайл и никога не се пропускат. Обобщението печата `placed on it (N triangles of a B budget)` и, когато копия са пропуснати, `N copies left out to fit the budget, the furthest from the driving first`.
+- Степените на детайл следват [Нива на детайл и бюджетът](https://holdi601.github.io/3DHeat-GameFiles/bg/detail-budget.html): дистанционни пояси, после най-скъпите модели слизат, за да се вмести бюджетът. Там, където дори най-грубите нива го надвишават, най-отдалечените копия се пропускат, както при BeamNG, докато се вместят. Бордюрите пазят пълния детайл и никога не се пропускат. Обобщението печата `placed on it (N triangles of a B budget)` и, когато копия са пропуснати, `N copies left out to fit the budget, the furthest from the driving first`.
 - Всяка категория е една част с плосък цвят: `ground:kerbs` за бордюрите, които са повърхност за шофиране, както при Forza и BeamNG, и `structure:<категория>` за останалите:
 
 | Категория | Цвят (линейно RGB) |

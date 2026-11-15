@@ -3,7 +3,7 @@ title: "Εξαγωγή πίστας: Assetto Corsa Rally"
 nav_order: 3
 lang: "el"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -12,16 +12,16 @@ search_exclude: true
 Το Assetto Corsa Rally είναι φτιαγμένο με το Unreal Engine 5 (5.6.1, τροποποιημένη έκδοση) και έχει το περιεχόμενό του σε IoStore containers. Κανένα από αυτά δεν είναι κρυπτογραφημένο. Η εξαγωγή βρίσκει το στάδιο και τον προσανατολισμό των αξόνων από τον γύρο. Γράφει τα δικά του πλακίδια εδάφους του σταδίου, χωρισμένα σε δρόμο και έδαφος, με υφή από το χρώμα εδάφους που έχει ψηθεί για το στάδιο, και τοποθετεί τα υπόλοιπα μοντέλα σε επίπεδα χρώματα ανά κατηγορία.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Πηγές: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (εγκατάσταση, στάδια, τοποθέτηση),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (η εξαγωγή).
-Οι αναγνώστες Unreal από κάτω βρίσκονται στο [Unreal 5 IoStore](reader-unreal-iostore.md),
-και η αποσυμπίεση στο [Oodle](reader-oodle.md).
+Πηγές: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (εγκατάσταση, στάδια, τοποθέτηση),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (η εξαγωγή).
+Οι αναγνώστες Unreal από κάτω βρίσκονται στο [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/el/reader-unreal-iostore.html),
+και η αποσυμπίεση στο [Oodle](https://holdi601.github.io/3DHeat-GameFiles/el/reader-oodle.html).
 
 **Κατάσταση:** ελέγχθηκε στο εγκατεστημένο παιχνίδι με γύρους που δημιουργήθηκαν σε τυχαίο καρέ σε κάθε στάδιο, και βρήκε το σωστό στάδιο και καρέ κάθε φορά. Κανένας γύρος που έχει καταγραφεί μέσα στο ίδιο το παιχνίδι δεν έχει περάσει ακόμα από εδώ.
 
@@ -31,7 +31,7 @@ python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Gam
 - Αλλιώς ελέγχεται με τον ίδιο τρόπο ο φάκελος `steamapps\common\Assetto Corsa Rally` σε κάθε βιβλιοθήκη Steam.
 - Κάθε `.utoc` μέσα σε αυτόν τον φάκελο ανοίγει ως ένα store. Τα containers που δεν ανοίγουν παρακάμπτονται. Αν δεν ανοίξει κανένα: `no readable IoStore containers in ...`.
 
-Τα περισσότερα μπλοκ είναι συμπιεσμένα με Oodle, και η βιβλιοθήκη αναζητείται στον υπολογιστή (ψάχνονται όλες οι βιβλιοθήκες Steam). Βλ. [Oodle](reader-oodle.md).
+Τα περισσότερα μπλοκ είναι συμπιεσμένα με Oodle, και η βιβλιοθήκη αναζητείται στον υπολογιστή (ψάχνονται όλες οι βιβλιοθήκες Steam). Βλ. [Oodle](https://holdi601.github.io/3DHeat-GameFiles/el/reader-oodle.html).
 
 Το παιχνίδι θεωρείται Assetto Corsa Rally όταν το αρχείο γύρου γράφει `"game": "assetto-corsa-rally"` (ή `acrally`), ή όταν δίνετε `--game acrally`.
 
@@ -56,7 +56,7 @@ python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Gam
 Ό,τι τοποθετεί ένα μοντέλο είναι ένα `StaticMeshComponent`: το `StaticMesh` του και τα `RelativeLocation`, `RelativeRotation` και `RelativeScale3D` του, το καθένα ως προς το component στο οποίο είναι προσαρτημένο (`AttachParent`), μέχρι τη ρίζα του actor, που βρίσκεται στον κόσμο.
 
 - Οι ιδιότητες είναι **unversioned**: αποθηκεύονται κατά θέση στη λίστα ιδιοτήτων της κλάσης, όχι κατά όνομα. Διαβάζονται με τα σχήματα του [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (βλ. [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (βλ. [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/el/reader-unreal-iostore.html#unversioned-properties)).
 - Μια τιμή ίση με το πρότυπο του component (το archetype του σε Blueprint) δεν αποθηκεύεται. Γι' αυτό διαβάζονται πρώτα, αναδρομικά, οι τιμές του προτύπου, και οι δικές τις τιμές του component τις αντικαθιστούν.
 - Τα components με `bVisible = 0` ή `bHiddenInGame = 1` παρακάμπτονται. Παρακάμπτονται επίσης τα μοντέλα των οποίων η διαδρομή ταιριάζει με `respawnwall`, `collision`, `blocker`, `invisible`, `/hlod/` ή `_hlod`.
 - Οι περιστροφές χρησιμοποιούν το `FRotationMatrix` της Unreal (pitch, yaw, roll σε μοίρες).
@@ -118,7 +118,7 @@ python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Gam
 | αντικείμενα (props) | ό,τι άλλο |
 
 - Ένα αντίγραφο λαμβάνεται υπόψη αν η αρχή του βρίσκεται στον διάδρομο προσέγγισης (`margin + 60 m`) και σχεδιάζεται αν τα όριά του αγγίζουν τον διάδρομο.
-- Τα επίπεδα λεπτομέρειας ακολουθούν το [Επίπεδα λεπτομέρειας και ο προϋπολογισμός](detail-budget.md): ζώνες απόστασης, και μετά τα πιο δαπανηρά μοντέλα υποβαθμίζονται για να χωρέσουν στον προϋπολογισμό. Όπου ακόμα και τα πιο χονδρά επίπεδα ξεπερνούν τον προϋπολογισμό, τα πιο μακρινά αντίγραφα αφαιρούνται, όπως στο BeamNG, μέχρι να χωρέσει. Τα κράσπεδα κρατούν πλήρη λεπτομέρεια και δεν αφαιρούνται ποτέ. Η σύνοψη γράφει `placed on it (N triangles of a B budget)` και, όταν αφαιρέθηκαν αντίγραφα, `N copies left out to fit the budget, the furthest from the driving first`.
+- Τα επίπεδα λεπτομέρειας ακολουθούν το [Επίπεδα λεπτομέρειας και ο προϋπολογισμός](https://holdi601.github.io/3DHeat-GameFiles/el/detail-budget.html): ζώνες απόστασης, και μετά τα πιο δαπανηρά μοντέλα υποβαθμίζονται για να χωρέσουν στον προϋπολογισμό. Όπου ακόμα και τα πιο χονδρά επίπεδα ξεπερνούν τον προϋπολογισμό, τα πιο μακρινά αντίγραφα αφαιρούνται, όπως στο BeamNG, μέχρι να χωρέσει. Τα κράσπεδα κρατούν πλήρη λεπτομέρεια και δεν αφαιρούνται ποτέ. Η σύνοψη γράφει `placed on it (N triangles of a B budget)` και, όταν αφαιρέθηκαν αντίγραφα, `N copies left out to fit the budget, the furthest from the driving first`.
 - Κάθε κατηγορία είναι ένα μέρος με επίπεδο χρώμα: `ground:kerbs` για τα κράσπεδα, που είναι επιφάνεια οδήγησης, όπως στο Forza και στο BeamNG, και `structure:<category>` για τα υπόλοιπα:
 
 | Κατηγορία | Χρώμα (γραμμικό RGB) |

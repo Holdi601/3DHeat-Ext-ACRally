@@ -3,7 +3,7 @@ title: Assetto Corsa Rally
 nav_order: 3
 lang: "pt"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -17,16 +17,16 @@ da cor de solo assada da etapa. Os demais modelos são colocados em cores chapad
 por categoria.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Fontes: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (instalação, etapas, posicionamento),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (a exportação).
-Os leitores Unreal por baixo estão em [Unreal 5 IoStore](reader-unreal-iostore.md),
-e a descompressão em [Oodle](reader-oodle.md).
+Fontes: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (instalação, etapas, posicionamento),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (a exportação).
+Os leitores Unreal por baixo estão em [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/pt/reader-unreal-iostore.html),
+e a descompressão em [Oodle](https://holdi601.github.io/3DHeat-GameFiles/pt/reader-oodle.html).
 
 **Situação:** testado na versão instalada do jogo com voltas geradas num frame
 aleatório em cada etapa, e encontrou a etapa e o frame certos todas as vezes.
@@ -43,7 +43,7 @@ Nenhuma volta gravada no próprio jogo passou por ele ainda.
   que falham ao abrir são saltados. Se nenhum abre: "no readable IoStore containers in ...".
 
 A maior parte dos blocos é comprimida com Oodle, e uma biblioteca é procurada na
-máquina (todas as bibliotecas da Steam são pesquisadas). Veja [Oodle](reader-oodle.md).
+máquina (todas as bibliotecas da Steam são pesquisadas). Veja [Oodle](https://holdi601.github.io/3DHeat-GameFiles/pt/reader-oodle.html).
 
 O jogo é tomado como AC Rally quando o ficheiro da volta diz
 `"game": "assetto-corsa-rally"` (ou `acrally`), ou quando se passa `--game acrally`.
@@ -77,7 +77,7 @@ componente ao qual está preso (`AttachParent`), até à raiz do ator, que fica 
 - As propriedades são **sem versão**: guardadas pela posição na lista de
   propriedades da classe, e não pelo nome. São lidas com os esquemas de
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (veja [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (veja [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/pt/reader-unreal-iostore.html#unversioned-properties)).
 - Um valor igual ao do modelo do componente (o seu arquétipo num Blueprint) não
   é guardado. Por isso os valores do modelo são lidos primeiro, recursivamente, e
   os valores próprios do componente os substituem.
@@ -185,7 +185,7 @@ mesh (vale a primeira correspondência):
 
 - Uma cópia é considerada se a sua origem estiver no corredor de alcance
   (`margin + 60 m`), e é desenhada se os seus limites tocarem o corredor.
-- Os níveis de detalhe seguem [Níveis de detalhe e o orçamento](detail-budget.md):
+- Os níveis de detalhe seguem [Níveis de detalhe e o orçamento](https://holdi601.github.io/3DHeat-GameFiles/pt/detail-budget.html):
   faixas de distância, e depois os modelos mais caros descem de nível para caber no
   orçamento. Onde nem os níveis mais grosseiros passam do limite, as cópias mais
   distantes são deixadas de fora, como no BeamNG, até caber. Os lancis mantêm

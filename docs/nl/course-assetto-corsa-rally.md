@@ -3,7 +3,7 @@ title: "Baan-export: Assetto Corsa Rally"
 nav_order: 3
 lang: "nl"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -12,16 +12,16 @@ search_exclude: true
 Assetto Corsa Rally is gebouwd op Unreal Engine 5 (5.6.1, een aangepaste build) en levert zijn inhoud in IoStore-containers. Geen daarvan is versleuteld. De export vindt de etappe en de richting van de assen uit de ronde. Hij schrijft de eigen grondtegels van de etappe, gesplitst in weg en terrein en getextureerd met de gebakken grondkleur van de etappe. De overige modellen krijgen vlakke kleuren per categorie.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Bronnen: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (installatie, etappes, plaatsing),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (de export).
-De Unreal-lezers eronder staan op [Unreal 5 IoStore](reader-unreal-iostore.md),
-en decompressie op [Oodle](reader-oodle.md).
+Bronnen: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (installatie, etappes, plaatsing),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (de export).
+De Unreal-lezers eronder staan op [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/nl/reader-unreal-iostore.html),
+en decompressie op [Oodle](https://holdi601.github.io/3DHeat-GameFiles/nl/reader-oodle.html).
 
 **Status:** gecontroleerd op het geïnstalleerde spel, met ronden die op elke etappe in een willekeurig frame gegenereerd zijn. Elke keer vond hij de juiste etappe en het juiste frame. Een ronde die in het spel zelf is gereden, heeft hij nog niet doorlopen.
 
@@ -31,7 +31,7 @@ en decompressie op [Oodle](reader-oodle.md).
 - Anders wordt in elke Steam-bibliotheek `steamapps\common\Assetto Corsa Rally` op dezelfde manier gecontroleerd.
 - Elke `.utoc` in die map wordt als één opslag geopend. Containers die niet openen, worden overgeslagen. Als er geen enkele opent: `no readable IoStore containers in ...`.
 
-De meeste blokken zijn met Oodle gecomprimeerd, en er wordt op de pc naar een bibliotheek gezocht (elke Steam-bibliotheek wordt doorzocht). Zie [Oodle](reader-oodle.md).
+De meeste blokken zijn met Oodle gecomprimeerd, en er wordt op de pc naar een bibliotheek gezocht (elke Steam-bibliotheek wordt doorzocht). Zie [Oodle](https://holdi601.github.io/3DHeat-GameFiles/nl/reader-oodle.html).
 
 Het spel wordt als AC Rally herkend wanneer het lapbestand `"game": "assetto-corsa-rally"` (of `acrally`) zegt, of wanneer je `--game acrally` meegeeft.
 
@@ -57,7 +57,7 @@ Wat een mesh plaatst, is een `StaticMeshComponent`: zijn `StaticMesh`, en zijn `
 
 - De eigenschappen zijn **unversioned**: ze staan opgeslagen op hun plek in de eigenschappenlijst van de klasse, niet op naam. Ze worden gelezen met de schema's in
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (zie [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (zie [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/nl/reader-unreal-iostore.html#unversioned-properties)).
 - Een waarde die gelijk is aan de sjabloon van het component (zijn archetype in een Blueprint) wordt niet opgeslagen. De waarden van de sjabloon worden dus eerst gelezen, recursief, en de eigen waarden van het component overschrijven ze.
 - Componenten met `bVisible = 0` of `bHiddenInGame = 1` worden overgeslagen. Dat geldt ook voor meshes waarvan het pad `respawnwall`, `collision`, `blocker`, `invisible`, `/hlod/` of `_hlod` bevat.
 - Rotaties gebruiken Unreals `FRotationMatrix` (pitch, yaw, roll in graden).
@@ -119,7 +119,7 @@ Elke plaatsing die geen grondtegel is, wordt ingedeeld op zijn meshpad (de eerst
 | rekwisieten | alles wat overblijft |
 
 - Een kopie telt mee wanneer zijn oorsprong in de bereikcorridor ligt (`margin + 60 m`), en wordt getekend wanneer zijn begrenzing de corridor raakt.
-- Detailniveaus volgen [Detailniveaus en het budget](detail-budget.md): eerst afstandsbanden, daarna stappen de duurste modellen omlaag om in het driehoeksbudget te passen. Waar zelfs de grofste niveaus het budget overschrijden, worden de verste kopieën weggelaten, zoals bij BeamNG, tot het past. Kantstenen houden volledig detail en worden nooit weggelaten. De samenvatting drukt `placed on it (N triangles of a B budget)` af en, als er kopieën zijn weggelaten, `N copies left out to fit the budget, the furthest from the driving first`.
+- Detailniveaus volgen [Detailniveaus en het budget](https://holdi601.github.io/3DHeat-GameFiles/nl/detail-budget.html): eerst afstandsbanden, daarna stappen de duurste modellen omlaag om in het driehoeksbudget te passen. Waar zelfs de grofste niveaus het budget overschrijden, worden de verste kopieën weggelaten, zoals bij BeamNG, tot het past. Kantstenen houden volledig detail en worden nooit weggelaten. De samenvatting drukt `placed on it (N triangles of a B budget)` af en, als er kopieën zijn weggelaten, `N copies left out to fit the budget, the furthest from the driving first`.
 - Elke categorie is één deel in een vlakke kleur: `ground:kerbs` voor kantstenen, die rijoppervlak zijn, zoals bij Forza en BeamNG, en `structure:<categorie>` voor de rest:
 
 | Categorie | Kleur (lineaire RGB) |

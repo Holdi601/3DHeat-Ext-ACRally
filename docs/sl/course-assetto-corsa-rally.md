@@ -3,7 +3,7 @@ title: "Assetto Corsa Rally"
 nav_order: 3
 lang: "sl"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -12,16 +12,16 @@ search_exclude: true
 Assetto Corsa Rally je zgrajen na Unreal Engine 5 (5.6.1, prirejena različica) in svojo vsebino shranjuje v kontejnerjih IoStore. Noben ni šifriran. Izvoz iz kroga najde etapo in usmerjenost osi. Zapiše lastne talne ploščice etape, razdeljene na cesto in teren, teksturirane z zapečeno talno barvo etape, druge modele pa v enobarvnih ploskvah po kategorijah.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Viri: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (namestitev, etape, postavitev),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (izvoz).
-Bralniki Unreal, na katerih to stoji, so opisani na [Unreal 5 IoStore](reader-unreal-iostore.md),
-dekompresija pa na [Oodle](reader-oodle.md).
+Viri: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (namestitev, etape, postavitev),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (izvoz).
+Bralniki Unreal, na katerih to stoji, so opisani na [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/sl/reader-unreal-iostore.html),
+dekompresija pa na [Oodle](https://holdi601.github.io/3DHeat-GameFiles/sl/reader-oodle.html).
 
 **Stanje:** preverjeno na nameščeni igri s krogi, ustvarjenimi v naključnem koordinatnem sistemu na vsaki etapi. Vsakič je našlo pravo etapo in koordinatni sistem. Krog, posnet v sami igri, še ni bil obdelan.
 
@@ -31,7 +31,7 @@ dekompresija pa na [Oodle](reader-oodle.md).
 - Sicer se v vsaki knjižnici Steam preveri `steamapps\common\Assetto Corsa Rally`.
 - Vsaka `.utoc` datoteka v tisti mapi se odpre kot en shranjevalnik. Kontejnerji, ki se ne odprejo, se preskočijo. Če se nobeden ne odpre, je sporočilo "no readable IoStore containers in ...".
 
-Večina blokov je stisnjena z Oodle, knjižnica pa se išče na računalniku (preišče se vsaka knjižnica Steam). Glejte [Oodle](reader-oodle.md).
+Večina blokov je stisnjena z Oodle, knjižnica pa se išče na računalniku (preišče se vsaka knjižnica Steam). Glejte [Oodle](https://holdi601.github.io/3DHeat-GameFiles/sl/reader-oodle.html).
 
 Igra se šteje za AC Rally, če datoteka kroga navaja `"game": "assetto-corsa-rally"` (ali `acrally`), ali če podate `--game acrally`.
 
@@ -55,7 +55,7 @@ Nobene **višinske mreže** (landscape) ni. Tla so statični meshi:
 
 Mesh postavi `StaticMeshComponent`: njegov `StaticMesh` ter njegovi `RelativeLocation`, `RelativeRotation` in `RelativeScale3D`, vsi relativni glede na komponento, na katero je pripet (`AttachParent`), do korena aktorja, ki je v svetu.
 
-- Lastnosti so **unversioned**: shranjene so po položaju v seznamu lastnosti razreda, ne po imenu. Berejo se s shemami v [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py) (glejte [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+- Lastnosti so **unversioned**: shranjene so po položaju v seznamu lastnosti razreda, ne po imenu. Berejo se s shemami v [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py) (glejte [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/sl/reader-unreal-iostore.html#unversioned-properties)).
 - Vrednost, ki je enaka predlogi komponente (njenemu archetype-u v Blueprintu), ni shranjena. Zato se najprej rekurzivno preberejo vrednosti predloge, lastne vrednosti komponente pa jih nadomestijo.
 - Komponente z `bVisible = 0` ali `bHiddenInGame = 1` se preskočijo. Enako meshi, katerih pot ustreza `respawnwall`, `collision`, `blocker`, `invisible`, `/hlod/` ali `_hlod`.
 - Rotacije uporabljajo Unrealov `FRotationMatrix` (pitch, yaw, roll v stopinjah).
@@ -117,7 +117,7 @@ Vsaka postavitev, ki ni talna ploščica, se razvrsti po poti do mesha (prvo uje
 | rekviziti | vse drugo |
 
 - Kopija se upošteva, če je njen izvor v pasu dosega (`margin + 60 m`), in se nariše, če se njeni robovi dotikajo pasu.
-- Stopnje podrobnosti sledijo [Stopnjam podrobnosti in proračunu](detail-budget.md): pasovi razdalje, nato se najdražji modeli znižajo, da se prilegajo proračunu trikotnikov. Kjer tudi najgrobljše stopnje presegajo proračun, se najbolj oddaljene kopije izpustijo, kot pri BeamNG, dokler se ne prilegajo. Robniki ohranijo polno podrobnost in se nikoli ne izpustijo. Povzetek izpiše `placed on it (N triangles of a B budget)` in, če so kopije odšle, `N copies left out to fit the budget, the furthest from the driving first`.
+- Stopnje podrobnosti sledijo [Stopnjam podrobnosti in proračunu](https://holdi601.github.io/3DHeat-GameFiles/sl/detail-budget.html): pasovi razdalje, nato se najdražji modeli znižajo, da se prilegajo proračunu trikotnikov. Kjer tudi najgrobljše stopnje presegajo proračun, se najbolj oddaljene kopije izpustijo, kot pri BeamNG, dokler se ne prilegajo. Robniki ohranijo polno podrobnost in se nikoli ne izpustijo. Povzetek izpiše `placed on it (N triangles of a B budget)` in, če so kopije odšle, `N copies left out to fit the budget, the furthest from the driving first`.
 - Vsaka kategorija je en del v enobarvni ploskvi: `ground:kerbs` za robnike, ki so vozna površina, kot pri Forzi in BeamNG, in `structure:<kategorija>` za ostale:
 
 | Kategorija | Barva (linearni RGB) |

@@ -3,7 +3,7 @@ title: Assetto Corsa Rally
 nav_order: 3
 lang: "hr"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -16,16 +16,16 @@ na cestu i teren, s teksturom iz pečene boje tla etape, a ostale modele postavl
 u jednolikim bojama po kategoriji.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <ime karte etape>
-python -m heat3d_gamefiles course rally_lap.json --level x      # krivo ime ispisuje etape
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <ime karte etape>
+heat3d-acrally-maps course rally_lap.json --level x      # krivo ime ispisuje etape
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Izvori: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (instalacija, etape, postavljanje),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (izvoz).
-Unreal čitači ispod toga opisani su na [Unreal 5 IoStore](reader-unreal-iostore.md),
-a dekompresija na [Oodle](reader-oodle.md).
+Izvori: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (instalacija, etape, postavljanje),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (izvoz).
+Unreal čitači ispod toga opisani su na [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/hr/reader-unreal-iostore.html),
+a dekompresija na [Oodle](https://holdi601.github.io/3DHeat-GameFiles/hr/reader-oodle.html).
 
 **Stanje:** provjereno na instaliranoj igri s krugovima generiranima u nasumičnom
 okviru na svakoj etapi, i izvoz je svaki put našao pravu etapu i okvir. Nijedan
@@ -43,7 +43,7 @@ krug zabilježen u samoj igri još nije prošao kroz izvoz.
   `no readable IoStore containers in ...`.
 
 Većina blokova komprimirana je Oodleom, a biblioteka se traži na računalu (pretražuje
-se svaka Steam biblioteka). Vidi [Oodle](reader-oodle.md).
+se svaka Steam biblioteka). Vidi [Oodle](https://holdi601.github.io/3DHeat-GameFiles/hr/reader-oodle.html).
 
 Igra se prepoznaje kao AC Rally kad datoteka kruga kaže `"game": "assetto-corsa-rally"`
 (ili `acrally`), ili kad predate `--game acrally`.
@@ -76,7 +76,7 @@ komponenti za koju je vezan (`AttachParent`), sve do korijena aktera, koji je u 
 - Svojstva su **neverzionirana**: spremljena prema položaju na popisu svojstava
   klase, a ne prema imenu. Čitaju se pomoću shema u
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (vidi [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (vidi [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/hr/reader-unreal-iostore.html#unversioned-properties)).
 - Vrijednost jednaka predlošku komponente (njezinom archetypeu u Blueprintu) nije
   spremljena, pa se prvo rekurzivno čitaju vrijednosti predloška, a vlastite
   vrijednosti komponente ih nadjačavaju.
@@ -180,7 +180,7 @@ podudaranje vrijedi):
 
 - Primjerak se razmatra ako mu je ishodište u koridoru dosega (`margin + 60 m`), a
   crta se ako mu se granice dotiču koridora.
-- Razine detalja slijede [Razine detalja i proračun](detail-budget.md): pojasevi
+- Razine detalja slijede [Razine detalja i proračun](https://holdi601.github.io/3DHeat-GameFiles/hr/detail-budget.html): pojasevi
   udaljenosti, pa se najskuplji modeli spuštaju da stanu u proračun. Gdje ni najgrublje
   razine ne prelaze proračun, najudaljeniji primjerci se izostavljaju, kao kod BeamNG-a,
   dok ne stane. Rubnici zadržavaju punu razinu detalja i nikad se ne izostavljaju.

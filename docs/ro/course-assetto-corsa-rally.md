@@ -3,7 +3,7 @@ title: "Assetto Corsa Rally"
 nav_order: 3
 lang: "ro"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -12,16 +12,16 @@ search_exclude: true
 Assetto Corsa Rally este construit pe Unreal Engine 5 (5.6.1, o versiune modificată) și își livrează conținutul ca containere IoStore. Niciunul nu este criptat. Exportul găsește etapa și orientarea axelor din tur. Scrie solul propriu al etapei, împărțit în drum și teren și texturat după culoarea de sol coaptă a etapei, iar celelalte modele le plasează în culori uniforme, pe categorii.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Surse: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (instalarea, etapele, plasarea),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (exportul).
-Cititoarele Unreal de sub ele sunt descrise la [Unreal 5 IoStore](reader-unreal-iostore.md),
-iar decompresia la [Oodle](reader-oodle.md).
+Surse: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (instalarea, etapele, plasarea),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (exportul).
+Cititoarele Unreal de sub ele sunt descrise la [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/ro/reader-unreal-iostore.html),
+iar decompresia la [Oodle](https://holdi601.github.io/3DHeat-GameFiles/ro/reader-oodle.html).
 
 **Stare:** verificat pe jocul instalat, cu tururi generate într-un cadru aleatoriu pe fiecare etapă, și a găsit de fiecare dată etapa și cadrul corecte. Niciun tur înregistrat în chiar joc nu a trecut prin el încă.
 
@@ -31,7 +31,7 @@ iar decompresia la [Oodle](reader-oodle.md).
 - Altfel, se verifică în același fel `steamapps\common\Assetto Corsa Rally` din fiecare bibliotecă Steam.
 - Fiecare `.utoc` din acel folder este deschis ca un singur depozit. Containerele care nu se deschid sunt sărite. Dacă niciunul nu se deschide: "no readable IoStore containers in ...".
 
-Majoritatea blocurilor sunt comprimate cu Oodle, iar o bibliotecă este căutată pe calculator (se caută în fiecare bibliotecă Steam). Vezi [Oodle](reader-oodle.md).
+Majoritatea blocurilor sunt comprimate cu Oodle, iar o bibliotecă este căutată pe calculator (se caută în fiecare bibliotecă Steam). Vezi [Oodle](https://holdi601.github.io/3DHeat-GameFiles/ro/reader-oodle.html).
 
 Jocul este considerat AC Rally când fișierul de tur spune `"game": "assetto-corsa-rally"` (sau `acrally`), sau când dați `--game acrally`.
 
@@ -55,7 +55,7 @@ Un nivel contează drept etapă dacă folderul lui de mediu, `Content\Environmen
 
 Ceea ce plasează un mesh este o `StaticMeshComponent`: `StaticMesh`-ul ei și `RelativeLocation`, `RelativeRotation` și `RelativeScale3D`, fiecare relativ la componenta de care este atașată (`AttachParent`), până la rădăcina actorului, care se află în lume.
 
-- Proprietățile sunt **neversionate**: stocate după poziția lor în lista de proprietăți a clasei, nu după nume. Sunt citite cu schemele din [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py) (vezi [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+- Proprietățile sunt **neversionate**: stocate după poziția lor în lista de proprietăți a clasei, nu după nume. Sunt citite cu schemele din [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py) (vezi [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/ro/reader-unreal-iostore.html#unversioned-properties)).
 - O valoare egală cu șablonul componentei (arhetipul ei dintr-un Blueprint) nu este stocată, deci valorile șablonului se citesc întâi, recursiv, iar valorile proprii ale componentei le suprascriu.
 - Componentele cu `bVisible = 0` sau `bHiddenInGame = 1` sunt sărite. La fel și mesh-urile a căror cale se potrivește cu `respawnwall`, `collision`, `blocker`, `invisible`, `/hlod/` sau `_hlod`.
 - Rotațiile folosesc `FRotationMatrix` al Unreal (pitch, yaw, roll, în grade).
@@ -118,7 +118,7 @@ Fiecare plasare care nu este o dală de sol este clasată după calea mesh-ului 
 | recuzită | orice altceva |
 
 - O copie este luată în calcul dacă originea ei se află în coridorul de acces (`margin + 60 m`), și este desenată dacă limitele ei ating coridorul.
-- Nivelurile de detaliu urmează [Niveluri de detaliu și buget](detail-budget.md): benzi de distanță, apoi cele mai costisitoare modele coboară un nivel până încap în buget. Acolo unde nici cele mai grosiere niveluri nu încap, cele mai îndepărtate copii sunt lăsate afară, ca în BeamNG, până când se potrivește. Bordurile păstrează detaliul complet și nu sunt lăsate afară niciodată. Sumarul afișează `placed on it (N triangles of a B budget)` și, când au fost lăsate copii afară, `N copies left out to fit the budget, the furthest from the driving first`.
+- Nivelurile de detaliu urmează [Niveluri de detaliu și buget](https://holdi601.github.io/3DHeat-GameFiles/ro/detail-budget.html): benzi de distanță, apoi cele mai costisitoare modele coboară un nivel până încap în buget. Acolo unde nici cele mai grosiere niveluri nu încap, cele mai îndepărtate copii sunt lăsate afară, ca în BeamNG, până când se potrivește. Bordurile păstrează detaliul complet și nu sunt lăsate afară niciodată. Sumarul afișează `placed on it (N triangles of a B budget)` și, când au fost lăsate copii afară, `N copies left out to fit the budget, the furthest from the driving first`.
 - Fiecare categorie este o singură piesă, într-o culoare uniformă: `ground:kerbs` pentru borduri, care sunt suprafață de rulare, ca în Forza și BeamNG, și `structure:<category>` pentru restul:
 
 | Categorie | Culoare (RGB liniar) |

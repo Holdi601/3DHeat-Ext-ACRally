@@ -14,8 +14,8 @@ import struct
 import numpy as np
 import pytest
 
-from heat3d_gamefiles.acrally import Placement, find_paks, list_stages, read_stage, rotator_matrix, texture_volume, transform
-from heat3d_gamefiles.acrallycourse import (
+from heat3d_ext_acrally.acrally import Placement, find_paks, list_stages, read_stage, rotator_matrix, texture_volume, transform
+from heat3d_ext_acrally.acrallycourse import (
     _levels,
     _score,
     describe_frame,

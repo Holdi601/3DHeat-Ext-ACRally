@@ -1,6 +1,5 @@
 ---
 title: Assetto Corsa Rally
-parent: Course export
 nav_order: 3
 ---
 
@@ -13,16 +12,16 @@ ground tiles, split into road and terrain and textured from the stage's baked
 ground colour, and places the other models in flat colours by category.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Sources: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (install, stages, placement),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (the export).
-The Unreal readers underneath are on [Unreal 5 IoStore](reader-unreal-iostore.md),
-and decompression on [Oodle](reader-oodle.md).
+Sources: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (install, stages, placement),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (the export).
+The Unreal readers underneath are on [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/reader-unreal-iostore.html),
+and decompression on [Oodle](https://holdi601.github.io/3DHeat-GameFiles/reader-oodle.html).
 
 **Status:** checked on the installed game with laps generated in a random frame
 on every stage, and it found the right stage and frame every time. No lap recorded
@@ -39,7 +38,7 @@ in the game itself has been through it yet.
   open are skipped. If none opens: "no readable IoStore containers in ...".
 
 Most blocks are Oodle-compressed, and a library is looked for on the machine
-(every Steam library is searched). See [Oodle](reader-oodle.md).
+(every Steam library is searched). See [Oodle](https://holdi601.github.io/3DHeat-GameFiles/reader-oodle.html).
 
 The game is taken as AC Rally when the lap file says `"game": "assetto-corsa-rally"`
 (or `acrally`), or when you pass `--game acrally`.
@@ -74,7 +73,7 @@ the world.
 - The properties are **unversioned**: stored by position in the class's property
   list, not by name. They are read with the schemas in
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (see [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (see [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/reader-unreal-iostore.html#unversioned-properties)).
 - A value equal to the component's template (its archetype in a Blueprint) is not
   stored, so the template's values are read first, recursively, and the
   component's own values override them.
@@ -180,7 +179,7 @@ match wins):
 
 - A copy is considered if its origin is in the reach corridor (`margin + 60 m`)
   and drawn if its bounds touch the corridor.
-- Levels of detail follow [Levels of detail and the budget](detail-budget.md):
+- Levels of detail follow [Levels of detail and the budget](https://holdi601.github.io/3DHeat-GameFiles/detail-budget.html):
   distance bands, then the costliest models step down to fit the budget. Where
   even the coarsest levels exceed it, the furthest copies are left out, as in
   BeamNG, until it fits. Kerbs keep full detail and are never left out. The

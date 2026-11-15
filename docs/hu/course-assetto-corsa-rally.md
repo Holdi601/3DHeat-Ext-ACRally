@@ -3,7 +3,7 @@ title: Assetto Corsa Rally
 nav_order: 3
 lang: "hu"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -16,17 +16,17 @@ terepen szétbontva, és a szakasz sütött talajszínéből textúrázza őket.
 kategória szerint, egyszínűen helyezi el.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Forrás: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py)
+Forrás: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py)
 (telepítés, szakaszok, elhelyezés),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py)
-(az export). Az alatta lévő Unreal-olvasók az [Unreal 5 IoStore](reader-unreal-iostore.md)
-oldalon vannak, a kicsomagolás az [Oodle](reader-oodle.md) oldalon.
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py)
+(az export). Az alatta lévő Unreal-olvasók az [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/hu/reader-unreal-iostore.html)
+oldalon vannak, a kicsomagolás az [Oodle](https://holdi601.github.io/3DHeat-GameFiles/hu/reader-oodle.html) oldalon.
 
 **Állapot:** a telepített játékon ellenőrizve, minden szakaszon véletlenszerű keretben
 generált körökkel, és minden alkalommal megtalálta a helyes szakaszt és keretet. A játékban
@@ -43,7 +43,7 @@ rögzített kör még nem ment át rajta.
   kihagyja. Ha egy sem nyílik meg: „no readable IoStore containers in ...".
 
 A blokkok többsége Oodle-lel van tömörítve, a könyvtárat a gépen keresi (minden Steam-könyvtárat
-átnéz). Lásd: [Oodle](reader-oodle.md).
+átnéz). Lásd: [Oodle](https://holdi601.github.io/3DHeat-GameFiles/hu/reader-oodle.html).
 
 A játékot AC Rally-ként ismeri fel, ha a körfájl `"game": "assetto-corsa-rally"` (vagy
 `acrally`) értéket ad meg, vagy ha `--game acrally`-t adsz meg.
@@ -76,7 +76,7 @@ amelyhez csatolva van (`AttachParent`), egészen az aktor gyökeréig, amely a v
 - A tulajdonságok **nem verziózottak**: az osztály tulajdonságlistájában elfoglalt helyük
   alapján vannak tárolva, nem névvel. A beolvasásuk az
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  sémáival történik (lásd: [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  sémáival történik (lásd: [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/hu/reader-unreal-iostore.html#unversioned-properties)).
 - Ha az érték megegyezik a komponens sablonjával (egy Blueprint archetípusával), nincs tárolva.
   Ezért a sablon értékeit előbb, rekurzívan olvassuk be, és a komponens saját értékei
   felülírják őket.
@@ -180,7 +180,7 @@ első találat nyer):
 
 - Egy példányt akkor veszünk figyelembe, ha az origója a sáv-kiterjesztésben van
   (`margin + 60 m`), és akkor rajzoljuk, ha a határoló doboza érinti a sávot.
-- A részletességi szintek a [Részletességi szintek és a keret](detail-budget.md) szerint
+- A részletességi szintek a [Részletességi szintek és a keret](https://holdi601.github.io/3DHeat-GameFiles/hu/detail-budget.html) szerint
   követik egymást: távolsági sávok, majd a legköltségesebb modellek egy szinttel lejjebb lépnek,
   hogy a keretbe férjenek. Ahol még a legdurvább szintek is túllépik, a legtávolabbi
   példányokat kihagyjuk, ahogy a BeamNG-nél, amíg bele nem férnek. A szegélykövek megtartják a

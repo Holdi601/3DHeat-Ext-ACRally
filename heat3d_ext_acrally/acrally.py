@@ -38,9 +38,9 @@ from pathlib import Path
 
 import numpy as np
 
-from .unversioned import CHAINS, PropertyError, read_properties
-from .unrealmath import rotator_matrix  # noqa: F401
-from .zen import Export, Package, Packages
+from heat3d_gamefiles.unversioned import CHAINS, PropertyError, read_properties
+from heat3d_gamefiles.unrealmath import rotator_matrix  # noqa: F401
+from heat3d_gamefiles.zen import Export, Package, Packages
 
 GAME_FOLDER = "Assetto Corsa Rally"
 _SMC = "/Script/Engine.StaticMeshComponent"
@@ -59,7 +59,7 @@ def find_paks(extra: tuple[str | Path, ...] = (), *, defaults: bool = True) -> P
     """The game's `Content/Paks` folder."""
     candidates = [Path(p) for p in extra]
     if defaults:
-        from .steam import steam_libraries
+        from heat3d_gamefiles.steam import steam_libraries
 
         for library in steam_libraries():
             candidates.append(Path(library) / "steamapps" / "common" / GAME_FOLDER)
@@ -345,7 +345,7 @@ def texture_volume(packages: Packages, stage: str) -> TextureVolume | None:
     its map, whose box - location its corner, scale its size - the texture
     is laid over, and the streaming texture it was baked into.
     """
-    from .unversioned import read_properties
+    from heat3d_gamefiles.unversioned import read_properties
 
     paths = stage_packages(packages, stage)
     package = packages.open(paths[0]) if paths else None

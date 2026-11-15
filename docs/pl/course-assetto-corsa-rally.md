@@ -3,7 +3,7 @@ title: "Eksport trasy: Assetto Corsa Rally"
 nav_order: 3
 lang: "pl"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -12,16 +12,16 @@ search_exclude: true
 Assetto Corsa Rally działa na Unreal Engine 5 (wersja 5.6.1, zmodyfikowana) i dostarcza zawartość jako kontenery IoStore. Żaden z nich nie jest zaszyfrowany. Eksport znajduje etap i orientację osi na podstawie okrążenia. Zapisuje kafelki terenu samego etapu, podzielone na drogę i teren, z teksturą z zapieczonego w grze koloru podłoża etapu. Pozostałe modele umieszcza w jednolitych kolorach, według kategorii.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Źródła: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (instalacja, etapy, rozmieszczenie),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (eksport).
-Czytniki Unreal, na których to stoi, opisano w [Unreal 5 IoStore](reader-unreal-iostore.md),
-a dekompresję w [Oodle](reader-oodle.md).
+Źródła: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (instalacja, etapy, rozmieszczenie),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (eksport).
+Czytniki Unreal, na których to stoi, opisano w [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/pl/reader-unreal-iostore.html),
+a dekompresję w [Oodle](https://holdi601.github.io/3DHeat-GameFiles/pl/reader-oodle.html).
 
 **Stan:** sprawdzone na zainstalowanej grze, z okrążeniami wygenerowanymi w losowej klatce na każdym etapie. Za każdym razem znalazło właściwy etap i klatkę. Żadne okrążenie nagrane w samej grze jeszcze przez nie nie przeszło.
 
@@ -31,7 +31,7 @@ a dekompresję w [Oodle](reader-oodle.md).
 - W przeciwnym razie sprawdzany jest folder `steamapps\common\Assetto Corsa Rally` w każdej bibliotece Steam, w ten sam sposób.
 - Każdy plik `.utoc` w tym folderze jest otwierany jako jeden magazyn. Kontenery, których nie da się otworzyć, są pomijane. Jeśli żaden się nie otworzy, pojawia się komunikat: "no readable IoStore containers in ...".
 
-Większość bloków jest skompresowana Oodle, a bibliotekę szuka się na komputerze (przeszukiwane są wszystkie biblioteki Steam). Zobacz [Oodle](reader-oodle.md).
+Większość bloków jest skompresowana Oodle, a bibliotekę szuka się na komputerze (przeszukiwane są wszystkie biblioteki Steam). Zobacz [Oodle](https://holdi601.github.io/3DHeat-GameFiles/pl/reader-oodle.html).
 
 Gra zostaje uznana za AC Rally, gdy plik okrążenia ma `"game": "assetto-corsa-rally"` (albo `acrally`), albo gdy podasz `--game acrally`.
 
@@ -55,7 +55,7 @@ Nie ma **żadnego landscape**. Podłoże to siatki statyczne:
 
 To, co umieszcza siatkę, to `StaticMeshComponent`: jej `StaticMesh` oraz `RelativeLocation`, `RelativeRotation` i `RelativeScale3D`. Każde z nich jest względne wobec komponentu, do którego jest podpięty (`AttachParent`), aż do korzenia aktora, który leży w świecie.
 
-- Właściwości są **unversioned**: zapisane według pozycji na liście właściwości klasy, a nie po nazwie. Odczytuje się je schematami z [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py) (zob. [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+- Właściwości są **unversioned**: zapisane według pozycji na liście właściwości klasy, a nie po nazwie. Odczytuje się je schematami z [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py) (zob. [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/pl/reader-unreal-iostore.html#unversioned-properties)).
 - Wartość równa szablonowi komponentu (jego archetypowi w Blueprincie) nie jest zapisywana. Dlatego najpierw czyta się wartości szablonu, rekurencyjnie, a własne wartości komponentu je nadpisują.
 - Komponenty z `bVisible = 0` albo `bHiddenInGame = 1` są pomijane. Pomijane są też siatki, których ścieżka pasuje do `respawnwall`, `collision`, `blocker`, `invisible`, `/hlod/` lub `_hlod`.
 - Obroty używają `FRotationMatrix` z Unreala (pitch, yaw, roll w stopniach).
@@ -117,7 +117,7 @@ Każde rozmieszczenie, które nie jest kafelkiem podłoża, klasyfikuje się po 
 | rekwizyty | cokolwiek innego |
 
 - Kopia jest brana pod uwagę, jeśli jej początek leży w korytarzu zasięgu (`margin + 60 m`), a rysowana, jeśli jej granice dotykają korytarza.
-- Poziomy szczegółowości wynikają z [Poziomy szczegółowości i budżet](detail-budget.md): najpierw pasma odległości, potem najbardziej kosztowne modele schodzą w dół, aż się zmieszczą w budżecie. Gdy nawet najgrubsze poziomy go przekraczają, najdalsze kopie są pomijane, jak w BeamNG, aż budżet się domknie. Krawężniki zachowują pełny szczegół i nigdy nie są pomijane. Podsumowanie wypisuje `placed on it (N triangles of a B budget)` i, gdy jakieś kopie zostały pominięte, `N copies left out to fit the budget, the furthest from the driving first`.
+- Poziomy szczegółowości wynikają z [Poziomy szczegółowości i budżet](https://holdi601.github.io/3DHeat-GameFiles/pl/detail-budget.html): najpierw pasma odległości, potem najbardziej kosztowne modele schodzą w dół, aż się zmieszczą w budżecie. Gdy nawet najgrubsze poziomy go przekraczają, najdalsze kopie są pomijane, jak w BeamNG, aż budżet się domknie. Krawężniki zachowują pełny szczegół i nigdy nie są pomijane. Podsumowanie wypisuje `placed on it (N triangles of a B budget)` i, gdy jakieś kopie zostały pominięte, `N copies left out to fit the budget, the furthest from the driving first`.
 - Każda kategoria to jedna część w jednolitym kolorze: `ground:kerbs` dla krawężników, które są nawierzchnią jezdni, jak w Forzie i BeamNG, oraz `structure:<category>` dla reszty:
 
 | Kategoria | Kolor (liniowe RGB) |

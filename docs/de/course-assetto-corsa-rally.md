@@ -3,7 +3,7 @@ title: Assetto Corsa Rally
 nav_order: 3
 lang: "de"
 source: course-assetto-corsa-rally.md
-source_hash: "2e2369b24de9"
+source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
@@ -17,16 +17,16 @@ und Gelände und mit der eingebackenen Bodenfarbe der Etappe als Textur, und set
 die übrigen Modelle nach Kategorie in einfarbigen Flächen.
 
 ```
-python -m heat3d_gamefiles course rally_lap.json
-python -m heat3d_gamefiles course rally_lap.json --level <stage map name>
-python -m heat3d_gamefiles course rally_lap.json --level x      # a wrong name lists the stages
-python -m heat3d_gamefiles course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
+heat3d-acrally-maps course rally_lap.json
+heat3d-acrally-maps course rally_lap.json --level <stage map name>
+heat3d-acrally-maps course rally_lap.json --level x      # a wrong name lists the stages
+heat3d-acrally-maps course rally_lap.csv --game acrally --install "D:\Games\Assetto Corsa Rally"
 ```
 
-Quellen: [`acrally.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrally.py) (Installation, Etappen, Platzierung),
-[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/acrallycourse.py) (der Export).
-Die darunterliegenden Unreal-Leser stehen unter [Unreal 5 IoStore](reader-unreal-iostore.md),
-die Dekomprimierung unter [Oodle](reader-oodle.md).
+Quellen: [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrally.py) (Installation, Etappen, Platzierung),
+[`acrallycourse.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/main/heat3d_ext_acrally/acrallycourse.py) (der Export).
+Die darunterliegenden Unreal-Leser stehen unter [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/de/reader-unreal-iostore.html),
+die Dekomprimierung unter [Oodle](https://holdi601.github.io/3DHeat-GameFiles/de/reader-oodle.html).
 
 **Status:** Geprüft an der installierten Version des Spiels, mit Runden, die auf
 jeder Etappe an einem zufälligen Frame erzeugt wurden. Dabei wurden jedes Mal die
@@ -45,7 +45,7 @@ aufgezeichnet wurde, ist noch nicht durch den Export gelaufen.
   "no readable IoStore containers in ...".
 
 Die meisten Blöcke sind mit Oodle komprimiert, und eine Bibliothek dafür wird auf
-dem Rechner gesucht (jede Steam-Bibliothek wird durchsucht). Siehe [Oodle](reader-oodle.md).
+dem Rechner gesucht (jede Steam-Bibliothek wird durchsucht). Siehe [Oodle](https://holdi601.github.io/3DHeat-GameFiles/de/reader-oodle.html).
 
 Das Spiel gilt als AC Rally, wenn die Rundendatei `"game": "assetto-corsa-rally"`
 (oder `acrally`) angibt oder wenn du `--game acrally` übergibst.
@@ -82,7 +82,7 @@ die in der Welt liegt.
   der Eigenschaftsliste der Klasse gespeichert, nicht nach Namen. Gelesen werden
   sie mit den Schemata in
   [`unversioned.py`](https://github.com/Holdi601/3DHeat-GameFiles/blob/main/heat3d_gamefiles/unversioned.py)
-  (siehe [Unreal 5 IoStore](reader-unreal-iostore.md#unversioned-properties)).
+  (siehe [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/de/reader-unreal-iostore.html#unversioned-properties)).
 - Ein Wert, der dem Template der Komponente entspricht (ihrem Archetyp in einem
   Blueprint), wird nicht gespeichert. Deshalb werden zuerst die Werte des Templates
   gelesen, rekursiv, und die eigenen Werte der Komponente überschreiben sie.
@@ -194,7 +194,7 @@ Jede Platzierung, die kein Bodenteil ist, wird nach ihrem Meshpfad eingeordnet
 
 - Eine Kopie wird berücksichtigt, wenn ihr Ursprung im Reichweitenkorridor liegt
   (`margin + 60 m`), und gezeichnet, wenn ihre Ausdehnung den Korridor berührt.
-- Die Detailstufen folgen [Detailstufen und Budget](detail-budget.md): Entfernungsbänder,
+- Die Detailstufen folgen [Detailstufen und Budget](https://holdi601.github.io/3DHeat-GameFiles/de/detail-budget.html): Entfernungsbänder,
   dann werden die teuersten Modelle auf eine gröbere Stufe gesetzt, bis es ins Budget
   passt. Reicht selbst die gröbste Stufe nicht, werden die am weitesten entfernten
   Kopien weggelassen, wie bei BeamNG, bis es passt. Randsteine behalten volle

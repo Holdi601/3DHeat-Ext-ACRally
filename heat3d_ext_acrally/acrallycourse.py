@@ -28,12 +28,12 @@ from pathlib import Path
 import numpy as np
 
 from .acrally import Placement, Stage, find_paks, list_stages, read_stage
-from .corridor import Corridor
-from .glb import Part, compute_normals, write_glb
-from .iostore import IoStoreError, Store
-from .surfaces import ROAD, TERRAIN, part_name
-from .unrealmesh import MeshShelf
-from .zen import Packages
+from heat3d_gamefiles.corridor import Corridor
+from heat3d_gamefiles.glb import Part, compute_normals, write_glb
+from heat3d_gamefiles.iostore import IoStoreError, Store
+from heat3d_gamefiles.surfaces import ROAD, TERRAIN, part_name
+from heat3d_gamefiles.unrealmesh import MeshShelf
+from heat3d_gamefiles.zen import Packages
 
 #: How far above the road a lap's samples may be and count as on it, metres.
 ON_ROAD = (-1.0, 3.0)
@@ -169,7 +169,7 @@ def ground_image(packages: Packages, shelf: MeshShelf, stage: Stage, *, largest:
     runs to 2 - so the scale is halved until the far terrain fits the image
     once, which put that stage's road exactly on the road the image shows.
     """
-    from .unrealtexture import TextureError, read_texture
+    from heat3d_gamefiles.unrealtexture import TextureError, read_texture
 
     folder = f"/content/environments/{stage.name.lower()}/"
     found = sorted(p for p in packages.store.files if folder in p and _SATELLITE.search(p))
@@ -216,7 +216,7 @@ class GroundPainter:
 
     def __init__(self, packages: Packages, shelf: MeshShelf, stage: Stage, size: int) -> None:
         from .acrally import texture_volume
-        from .unrealtexture import TextureError, VirtualTexture
+        from heat3d_gamefiles.unrealtexture import TextureError, VirtualTexture
 
         self.size = size
         self.volume = texture_volume(packages, stage.name)
@@ -537,7 +537,7 @@ def _levels(chosen, shelf: MeshShelf, frame: np.ndarray, route: np.ndarray, budg
     go until it does, as in the BeamNG export. Kerbs never step down and are
     never left out, so only a budget smaller than the kerbs alone is exceeded.
     """
-    from .detail import FAR, NEAR, auto_budget, choose_levels, route_distance
+    from heat3d_gamefiles.detail import FAR, NEAR, auto_budget, choose_levels, route_distance
 
     if not chosen:
         return [], budget or 0, 0
