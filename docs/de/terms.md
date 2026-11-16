@@ -3,7 +3,7 @@ title: "Bedingungen und Lizenz"
 nav_order: 9
 lang: "de"
 source: terms.md
-source_hash: "d94bf4eca099"
+source_hash: "7278eb6ba813"
 nav_exclude: true
 search_exclude: true
 ---
@@ -12,22 +12,26 @@ search_exclude: true
 ## Die Inhalte des Spiels {#the-games-content}
 
 Assetto Corsa Rally und seine Etappen gehören seinem Entwickler Kunos Simulazioni und seinem
-Herausgeber 505 Games, die dieses Projekt nicht unterstützen. Dieses Werkzeug liefert nichts vom Spiel
-mit und lädt nichts herunter: Es liest die Dateien der Kopie, **die du** installiert hast, auf deinem
-Rechner, außerhalb des Spiels. Es verändert das Spiel nicht und spricht mit keinem Server. Eine Strecke,
-die es schreibt, ist eine Ableitung der Etappe des Spiels: Sie ist dafür da, deine eigenen Fahrten zu
-analysieren, nicht zum Teilen oder Veröffentlichen. Ob du das Werkzeug benutzt, ist deine Entscheidung,
-unter den Bedingungen, die du für das Spiel akzeptiert hast.
+Herausgeber 505 Games. 3DHeat AC Rally ist nicht mit Kunos Simulazioni oder 505 Games verbunden und
+wird von ihnen nicht unterstützt. Assetto Corsa Rally und die zugehörigen Namen und Marken gehören
+ihren Inhabern.
 
-Deshalb ist es ein eigenes Paket: Wenn die Eigentümer des Spiels je verlangen, dass es verschwindet, geht
-es allein, und der Viewer, GameFiles und die anderen Werkzeuge bleiben.
+Dieses Werkzeug liefert nichts vom Spiel mit und lädt nichts herunter: keine Spielinhalte, keinen
+Spielcode, keine DLLs. Es liest die Dateien der Kopie, die **du** installiert hast, auf deinem
+Rechner, außerhalb des Spiels. Es verändert nichts im Spiel und spricht mit keinem Server. Eine Strecke, die es schreibt,
+wird aus der Etappe des Spiels geschnitten und bleibt auf deinem Rechner, zum Analysieren deiner
+eigenen Fahrten; bitte teile oder veröffentliche sie nicht.
+
+Jeder Spiele-Leser ist ein eigenes kleines Projekt mit eigener Lizenzdatei, eigenen Releases und eigenem Issue-Tracker. So lässt er sich für sich allein installieren, aktualisieren und pflegen - oder auf Wunsch eines Rechteinhabers zurückziehen -, ohne dass der Viewer oder die anderen Werkzeuge davon berührt werden.
+
+Rechteinhaber: Bitte ein Issue unter [github.com/Holdi601/3DHeat-Ext-ACRally/issues](https://github.com/Holdi601/3DHeat-Ext-ACRally/issues) eröffnen - wir antworten schnell und entfernen auf Anfrage alles.
 
 Die Regeln von 3DHeat GameFiles gelten hier unverändert
 ([Regeln und Lizenzen](https://holdi601.github.io/3DHeat-GameFiles/de/rules-and-licences.html)):
 
 - **Keine Schlüssel: keine mitgeliefert, keine herausgelöst.** Keiner der Container des Spiels ist
   verschlüsselt; ein verschlüsselter IoStore-Container wird rundweg abgelehnt.
-- **Deine eigenen Dateien, deine Verantwortung.** Das Werkzeug liest die auf deinem Rechner installierten
+- **Deine eigenen Dateien.** Das Werkzeug liest die auf deinem Rechner installierten
   Spieldateien. Es lädt nie Spielinhalte herunter.
 - **Die Ausgabe ist nicht zur Weitergabe bestimmt.** Behalte exportierte `.glb`-Dateien und die darin
   enthaltenen Texturen für deine eigene Analyse. Veröffentliche, teile oder verkaufe exportierte Strecken,
@@ -46,8 +50,7 @@ ebenfalls keine mit
 
 Das Spiel basiert auf Unreal Engine 5. Seine Container und Pakete werden von den Unreal-Lesern von 3DHeat
 GameFiles gelesen. Die Eigenschaftsdaten von Unreal 5 brauchen für jede Klasse eine Liste ihrer
-Eigenschaften. Die Listen in `unversioned.py` von GameFiles enthalten **nur Namen und Typen**, Fakten über
-das Format, so wie eine Interoperabilitäts-Zuordnungsdatei sie enthält. Sie wurden aus den Unreal-Engine-
+Eigenschaften. Die Listen in `unversioned.py` von GameFiles enthalten **nur Namen und Typen**. Sie wurden aus den Unreal-Engine-
 Headern abgeleitet, die Epic jedem mit verknüpftem Konto zur Verfügung stellt, und gegen die mitgelieferten
 Daten geprüft. Es ist kein Engine-Quellcode enthalten oder nötig. Was dieses Werkzeug hinzufügt – wo eine
 Etappe liegt, wie ihre Komponenten ihre Modelle platzieren, wie die Achsen einer Runde liegen – wurde aus dem

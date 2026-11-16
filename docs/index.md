@@ -41,6 +41,11 @@ in the viewer's **Background / level** panel with **3D model…**.
 The course is built from the game's files: it stays **on your machine**, to
 view, not to share or publish ([Terms](terms.md)).
 
+Each game reader is its own small project with its own licence file, releases
+and issue tracker, so it can be installed, updated, maintained - or withdrawn
+on a rights holder's request - on its own, without affecting the viewer or the
+other tools.
+
 ## Pages
 
 | Page | What it covers |
@@ -49,7 +54,7 @@ view, not to share or publish ([Terms](terms.md)).
 | [Course export: course](course-assetto-corsa-rally.md) | how a run becomes a course: the install, the stage, the frame, ground, texture, models |
 | [Finding the game: stages](stages.md) | where Assetto Corsa Rally is found, what `stages` prints |
 | [What is this file: identify](identify.md) | the game's own IoStore containers |
-| [Terms and licence](terms.md) | the game's content, the formats, why this is a separate package |
+| [Terms and licence](terms.md) | the game's content, the formats, a project of its own |
 | [Command reference](cli-reference.md) | every option, generated from the code |
 | [Maintaining these docs](maintaining.md) | the release checklist |
 

@@ -26,9 +26,8 @@ options:
   -h, --help            show this help message and exit
   --version             show program's version number and exit
 
-What you point it at is the game publisher's, under the game's own licence; the
-courses stay on your machine. Oodle-compressed blocks need the Oodle library already
-on your machine (HEAT3D_OODLE).
+It reads the files of your own install; the courses stay on your machine. Oodle-
+compressed blocks need the Oodle library already on your machine (HEAT3D_OODLE).
 ```
 
 ## `course`

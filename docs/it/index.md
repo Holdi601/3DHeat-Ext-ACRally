@@ -3,7 +3,7 @@ title: Home
 nav_order: 1
 lang: "it"
 source: index.md
-source_hash: "5942fc0278fa"
+source_hash: "01ac13b57f23"
 nav_exclude: true
 search_exclude: true
 permalink: /it/
@@ -44,6 +44,8 @@ nel pannello **Sfondo / livello** del visualizzatore con **Modello 3D…**.
 Il percorso è costruito a partire dai file del gioco: resta **sul tuo computer**, per
 guardarlo, non per condividerlo o pubblicarlo ([Termini](terms.md)).
 
+Ogni lettore di gioco è un piccolo progetto a sé, con il proprio file di licenza, le proprie release e il proprio issue tracker: può essere installato, aggiornato, mantenuto - o ritirato su richiesta di un titolare dei diritti - da solo, senza toccare il visualizzatore o gli altri strumenti.
+
 ## Pagine {#pages}
 
 | Pagina | Cosa contiene |
@@ -52,7 +54,7 @@ guardarlo, non per condividerlo o pubblicarlo ([Termini](terms.md)).
 | [Esportazione del percorso: course](course-assetto-corsa-rally.md) | come una corsa diventa un percorso: l'installazione, la tappa, il sistema di riferimento, il terreno, le texture, i modelli |
 | [Trovare il gioco: stages](stages.md) | dove viene trovato Assetto Corsa Rally, cosa stampa `stages` |
 | [Che file è questo: identify](identify.md) | i contenitori IoStore propri del gioco |
-| [Termini e licenza](terms.md) | i contenuti del gioco, i formati, perché questo è un pacchetto separato |
+| [Termini e licenza](terms.md) | i contenuti del gioco, i formati, un progetto a sé |
 | [Riferimento dei comandi](../cli-reference.md) | ogni opzione, generata dal codice |
 | [Manutenzione di questa documentazione](maintaining.md) | la lista di controllo per ogni rilascio |
 

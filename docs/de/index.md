@@ -3,7 +3,7 @@ title: "Startseite"
 nav_order: 1
 lang: "de"
 source: index.md
-source_hash: "5942fc0278fa"
+source_hash: "01ac13b57f23"
 nav_exclude: true
 search_exclude: true
 permalink: /de/
@@ -44,6 +44,8 @@ Viewers mit **3D-Modell…**.
 Die Strecke wird aus den Dateien des Spiels gebaut: sie bleibt **auf deinem Rechner**, zum Ansehen,
 nicht zum Teilen oder Veröffentlichen ([Bedingungen](terms.md)).
 
+Jeder Spiele-Leser ist ein eigenes kleines Projekt mit eigener Lizenzdatei, eigenen Releases und eigenem Issue-Tracker. So lässt er sich für sich allein installieren, aktualisieren und pflegen - oder auf Wunsch eines Rechteinhabers zurückziehen -, ohne dass der Viewer oder die anderen Werkzeuge davon berührt werden.
+
 ## Seiten {#pages}
 
 | Seite | Was sie behandelt |
@@ -52,7 +54,7 @@ nicht zum Teilen oder Veröffentlichen ([Bedingungen](terms.md)).
 | [Streckenexport: course](course-assetto-corsa-rally.md) | wie aus einer Fahrt eine Strecke wird: die Installation, die Etappe, der Rahmen, Boden, Textur, Modelle |
 | [Das Spiel finden: stages](stages.md) | wo Assetto Corsa Rally gefunden wird, was `stages` ausgibt |
 | [Was ist diese Datei: identify](identify.md) | die eigenen IoStore-Container des Spiels |
-| [Bedingungen und Lizenz](terms.md) | die Inhalte des Spiels, die Formate, warum dies ein eigenes Paket ist |
+| [Bedingungen und Lizenz](terms.md) | die Inhalte des Spiels, die Formate, ein Projekt für sich |
 | [Befehlsreferenz](../cli-reference.md) | jede Option, aus dem Code erzeugt |
 | [Diese Doku pflegen](maintaining.md) | die Checkliste für jedes Release |
 

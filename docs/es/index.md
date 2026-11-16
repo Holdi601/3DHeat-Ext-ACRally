@@ -3,7 +3,7 @@ title: Inicio
 nav_order: 1
 lang: "es"
 source: index.md
-source_hash: "5942fc0278fa"
+source_hash: "01ac13b57f23"
 nav_exclude: true
 search_exclude: true
 permalink: /es/
@@ -46,6 +46,8 @@ propia vuelta, y termina con `wrote my_run.glb (... bytes)`. Carga el `.glb` en 
 El recorrido se construye con los archivos del juego: se queda en **tu equipo**, para verlo, no para
 compartirlo ni publicarlo ([Condiciones](terms.md)).
 
+Cada lector de juego es un pequeño proyecto propio, con su propio archivo de licencia, sus propias versiones y su propio gestor de incidencias, de modo que puede instalarse, actualizarse, mantenerse - o retirarse a petición de un titular de derechos - por separado, sin afectar al visor ni a las demás herramientas.
+
 ## Páginas {#pages}
 
 | Página | Qué cubre |
@@ -54,7 +56,7 @@ compartirlo ni publicarlo ([Condiciones](terms.md)).
 | [Exportar el recorrido: course](course-assetto-corsa-rally.md) | cómo se convierte una vuelta en un recorrido: la instalación, el escenario, el marco, el suelo, la textura, los modelos |
 | [Encontrar el juego: stages](stages.md) | dónde se encuentra Assetto Corsa Rally, qué muestra `stages` |
 | [¿Qué es este archivo?: identify](identify.md) | los contenedores IoStore propios del juego |
-| [Condiciones y licencia](terms.md) | el contenido del juego, los formatos, por qué este es un paquete aparte |
+| [Condiciones y licencia](terms.md) | el contenido del juego, los formatos, un proyecto propio |
 | [Referencia de comandos](../cli-reference.md) | cada opción, generada a partir del código |
 | [Mantenimiento de esta documentación](maintaining.md) | la lista de comprobaciones de cada versión |
 

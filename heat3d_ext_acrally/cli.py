@@ -266,7 +266,7 @@ def main(argv: list[str] | None = None) -> int:
         prog=PROG,
         description="Assetto Corsa Rally stages from your own install as 3DHeat courses",
         epilog=(
-            "What you point it at is the game publisher's, under the game's own licence; "
+            "It reads the files of your own install; "
             "the courses stay on your machine. Oodle-compressed blocks need the Oodle library "
             "already on your machine (HEAT3D_OODLE)."
         ),
