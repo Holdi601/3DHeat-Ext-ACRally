@@ -7,7 +7,7 @@ source_hash: "f81983213ce6"
 nav_exclude: true
 search_exclude: true
 ---
-# Export de parcours : Assetto Corsa Rally {#course-export-assetto-corsa-rally}
+# Export du parcours : Assetto Corsa Rally {#course-export-assetto-corsa-rally}
 
 Assetto Corsa Rally repose sur Unreal Engine 5 (5.6.1, une version modifiée) et livre
 son contenu sous forme de conteneurs IoStore. Aucun n'est chiffré. L'export trouve
@@ -27,8 +27,8 @@ Sources : [`acrally.py`](https://github.com/Holdi601/3DHeat-Ext-ACRally/blob/mai
 Les lecteurs Unreal sous-jacents sont décrits dans [Unreal 5 IoStore](https://holdi601.github.io/3DHeat-GameFiles/fr/reader-unreal-iostore.html),
 et la décompression dans [Oodle](https://holdi601.github.io/3DHeat-GameFiles/fr/reader-oodle.html).
 
-**Statut :** testé sur le jeu installé avec des tours générés à une image aléatoire sur
-chaque étape. Il a trouvé à chaque fois la bonne étape et la bonne image. Aucun tour
+**Statut :** testé sur le jeu installé avec des tours générés dans un repère aléatoire sur
+chaque étape. Il a trouvé à chaque fois la bonne étape et le bon repère. Aucun tour
 enregistré dans le jeu lui-même n'a encore été passé dedans.
 
 ## Trouver l'installation {#finding-the-install}
@@ -142,7 +142,7 @@ les faces restent orientées du bon côté.
 - Les triangles sont regroupés par nature (route ou terrain) et par carré de 512 m dans
   l'espace Unreal (51 200 cm), chaque carré ayant sa propre image. Les parties sont
   nommées par exemple `ground:road 1_-4`. Les UV valent
-  `(unreal_xy - origine_du_carré) / 51200`.
+  `(unreal_xy - square_origin) / 51200`.
 - Les normales sont calculées à partir des triangles, pour tout le fichier.
 
 ### La texture du sol {#the-ground-texture}
