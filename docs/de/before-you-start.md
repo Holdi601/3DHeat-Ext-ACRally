@@ -3,7 +3,7 @@ title: "Bevor du anfängst"
 nav_order: 1.5
 lang: "de"
 source: before-you-start.md
-source_hash: "10b9fc801b7a"
+source_hash: "aa8ae8477336"
 nav_exclude: true
 search_exclude: true
 ---
@@ -103,7 +103,7 @@ Weiter: [Streckenexport](course-assetto-corsa-rally.md).
 |---|---|
 | `'python' is not recognized` | Python ist nicht installiert, oder der Haken bei PATH war nicht gesetzt: installiere es erneut und setze den Haken (oder tippe `py` statt `python`). |
 | `'heat3d-acrally-maps' is not recognized` | Führe Schritt 4 im Ordner des Werkzeugs noch einmal aus, oder tippe `python -m heat3d_ext_acrally` statt `heat3d-acrally-maps`: es tut dasselbe. |
-| `needs 3DHeat GameFiles: ...` | Schritt 4 hat GameFiles nicht installiert: führe `python -m pip install git+https://github.com/Holdi601/3DHeat-GameFiles.git` aus, oder setze `HEAT3D_GAMEFILES` auf einen GameFiles-Ordner. |
+| `needs 3DHeat GameFiles: ...` | Schritt 4 hat GameFiles nicht installiert: führe `python -m pip install https://github.com/Holdi601/3DHeat-GameFiles/archive/refs/tags/v1.1.0.zip` aus, oder setze `HEAT3D_GAMEFILES` auf einen GameFiles-Ordner. |
 | `no Assetto Corsa Rally install found in the Steam libraries` | Gib den Ordner des Spiels an, oder seinen `Content\Paks`: `--install "D:\Games\Assetto Corsa Rally"`. |
 | `... is a forza-... lap, not an Assetto Corsa Rally one` | Diese Runde stammt aus einem anderen Spiel; die Meldung nennt das passende Werkzeug dafür. |
 | `the lap does not lie on any stage's road in any frame` | Nenne die Etappe: `--level <stage map name>`, so wie `stages` sie auflistet. |

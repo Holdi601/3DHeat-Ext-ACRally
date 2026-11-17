@@ -3,7 +3,7 @@ title: "Startseite"
 nav_order: 1
 lang: "de"
 source: index.md
-source_hash: "01ac13b57f23"
+source_hash: "fc085b8b5fcd"
 nav_exclude: true
 search_exclude: true
 permalink: /de/
@@ -24,25 +24,39 @@ es fügt sich in die Rennanalyse des Viewers unter der Runde ein, ohne Platziere
 
 ## Schnellstart {#quick-start}
 
-Noch nie in der Kommandozeile gearbeitet? Lies zuerst [Bevor du anfängst](before-you-start.md).
-Du brauchst Python 3.10 oder neuer, Assetto Corsa Rally, eine darin aufgezeichnete Fahrt und
-[3DHeat GameFiles](https://holdi601.github.io/3DHeat-GameFiles/) (wird mit diesem Werkzeug installiert).
-Führe diese Befehle in dem Ordner aus, in den du das Werkzeug geklont oder entpackt hast:
+Du brauchst Windows, Python 3.10 oder neuer (im Installer "Add python.exe to PATH"
+ankreuzen), Assetto Corsa Rally über Steam installiert und eine mit
+[3DHeat GameCapture](https://github.com/Holdi601/3DHeat-GameCapture) aufgezeichnete
+Fahrt; Git ist nicht nötig. Neu auf der Kommandozeile? Lies zuerst
+[Bevor du anfängst](before-you-start.md).
 
 ```bash
-python -m pip install -e .                      # installiert den Befehl heat3d-acrally-maps
-heat3d-acrally-maps stages                      # wo das Spiel liegt, und seine Etappen
-heat3d-acrally-maps course my_run.json          # die Strecke um diese Fahrt
+python -m pip install https://github.com/Holdi601/3DHeat-Ext-ACRally/archive/refs/tags/v0.1.0.zip
+heat3d-acrally-maps stages                                     # wo das Spiel liegt, und seine Etappen
+heat3d-acrally-maps course laps\<run>.lap.json -o my_run.glb   # die Etappe um diese Fahrt
 ```
 
-Die Fahrt kommt vom 3DHeat-GameCapture-Recorder
-([Telemetrie: Assetto Corsa](https://holdi601.github.io/3DHeat-GameCapture/telemetry-assetto-corsa.html),
-`--game acrally`). `course` findet die Etappe und die Lage der Achsen der Runde aus der Runde selbst
-und endet mit `wrote my_run.glb (... bytes)`. Lade die `.glb` im Panel **Hintergrund / Level** des
-Viewers mit **3D-Modell…**.
+Die Installation bringt [3DHeat GameFiles](https://holdi601.github.io/3DHeat-GameFiles/)
+mit, die Bibliothek, mit der es liest. Die Fahrt kommt von
+`python -m heat3d_capture telemetry --game acrally -o laps`
+([Telemetrie: Assetto Corsa](https://holdi601.github.io/3DHeat-GameCapture/telemetry-assetto-corsa.html)).
+`course` findet die Etappe und die Lage der Achsen der Fahrt aus der Fahrt selbst
+und endet mit `wrote my_run.glb (... bytes)`; die Datei landet in dem Ordner, in
+dem du den Befehl ausgeführt hast. Liegt das Spiel in keiner Steam-Bibliothek,
+nenne seinen Ordner mit `--install "<Spielordner>"`. Die meisten Daten des
+Spiels sind Oodle-komprimiert: eine `oo2core_*_win64.dll`, die ein installiertes
+Unreal-Spiel mitbringt, wird von selbst gefunden, oder `HEAT3D_OODLE` nennt eine
+([Oodle](https://holdi601.github.io/3DHeat-GameFiles/reader-oodle.html)).
 
-Die Strecke wird aus den Dateien des Spiels gebaut: sie bleibt **auf deinem Rechner**, zum Ansehen,
-nicht zum Teilen oder Veröffentlichen ([Bedingungen](terms.md)).
+Dann öffne die `.glb` im [3DHeat-Viewer](https://github.com/Holdi601/3DHeat#quick-start):
+herunterladen (**Code -> Download ZIP**, entpacken), `start.bat` doppelklicken (es bietet
+an, Node.js zu installieren, wenn es fehlt, und öffnet `http://127.0.0.1:5273`), dann
+**Hintergrund / Level -> 3D-Modell...** und die Datei wählen, und im Tab
+**Rennanalyse** mit **Rundendateien laden...** die Fahrt wählen. Die Strecke bleibt
+auf deinem Rechner.
+
+Wenn ein neues Release erscheint, sagt das Werkzeug es beim Start und bietet an, sich
+selbst zu aktualisieren.
 
 Jeder Spiele-Leser ist ein eigenes kleines Projekt mit eigener Lizenzdatei, eigenen Releases und eigenem Issue-Tracker. So lässt er sich für sich allein installieren, aktualisieren und pflegen - oder auf Wunsch eines Rechteinhabers zurückziehen -, ohne dass der Viewer oder die anderen Werkzeuge davon berührt werden.
 

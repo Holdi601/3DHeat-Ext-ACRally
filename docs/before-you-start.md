@@ -100,7 +100,7 @@ Next: [Course export](course-assetto-corsa-rally.md).
 |---|---|
 | `'python' is not recognized` | Python is not installed, or the PATH box was not ticked: install it again and tick it (or type `py` instead of `python`). |
 | `'heat3d-acrally-maps' is not recognized` | Run step 4 again in the tool's folder, or type `python -m heat3d_ext_acrally` instead of `heat3d-acrally-maps`: it does the same. |
-| `needs 3DHeat GameFiles: ...` | Step 4 did not install GameFiles: run `python -m pip install git+https://github.com/Holdi601/3DHeat-GameFiles.git`, or set `HEAT3D_GAMEFILES` to a GameFiles folder. |
+| `needs 3DHeat GameFiles: ...` | Step 4 did not install GameFiles: run `python -m pip install https://github.com/Holdi601/3DHeat-GameFiles/archive/refs/tags/v1.1.0.zip`, or set `HEAT3D_GAMEFILES` to a GameFiles folder. |
 | `no Assetto Corsa Rally install found in the Steam libraries` | Give the game's folder, or its `Content\Paks`: `--install "D:\Games\Assetto Corsa Rally"`. |
 | `... is a forza-... lap, not an Assetto Corsa Rally one` | That lap is from another game; the message names the tool for it. |
 | `the lap does not lie on any stage's road in any frame` | Name the stage: `--level <stage map name>`, as `stages` lists it. |
