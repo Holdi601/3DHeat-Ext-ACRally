@@ -8,6 +8,34 @@ nav_order: 1.5
 New to the command line? This page takes you from nothing to a first run.
 It takes about fifteen minutes, once.
 
+## The standalone program (no Python needed)
+
+Each [release](https://github.com/Holdi601/3DHeat-Ext-ACRally/releases/latest)
+has a ready-to-run program for Windows (`heat3d-acrally-<version>-windows-x64.zip`)
+and Linux (`heat3d-acrally-<version>-linux-x64.tar.gz`, for a Steam/Proton install,
+Steam Deck included), with a `SHA256SUMS` file to check the download. Unpack it
+anywhere and start `heat3d-acrally`; steps 1 to 4 below are then not needed.
+
+Started without arguments it opens a window that:
+
+- finds your Assetto Corsa Rally install in any Steam library, or lets you
+  choose its folder;
+- says what is missing: the game, the Oodle library some blocks need (it comes
+  from a game or engine installed on your machine), free disk space;
+- exports the course around a run you pick into the 3DHeat levels folder
+  (`HEAT3D_LEVELS`, by default `%LOCALAPPDATA%\3DHeat\levels` on Windows and
+  `~/.local/share/3dheat/levels` on Linux), where the viewer finds it, and
+  lists the stages the game has;
+- checks for updates and asks before installing one, unless you tick
+  *Update automatically*.
+
+The same program runs every command on these pages:
+`heat3d-acrally heat3d-acrally-maps course my_run.json`, `heat3d-acrally stages`.
+For scripts: `heat3d-acrally --check --json` reports what is found and missing,
+and `heat3d-acrally status --json` the install's state. A course is cut around a
+run, so there is nothing to extract from the install alone: `heat3d-acrally extract --new`
+says so. The 3DHeat app's Extractors panel installs, updates and starts it for you.
+
 ## 1. Install Python
 
 This tool needs **Python 3.10 or later**.

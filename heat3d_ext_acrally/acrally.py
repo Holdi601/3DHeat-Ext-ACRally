@@ -63,6 +63,10 @@ def find_paks(extra: tuple[str | Path, ...] = (), *, defaults: bool = True) -> P
 
         for library in steam_libraries():
             candidates.append(Path(library) / "steamapps" / "common" / GAME_FOLDER)
+        # Every Steam library on any system: Linux native and flatpak (Steam Deck, Proton) too.
+        from .app.paths import steam_game_dirs
+
+        candidates += steam_game_dirs(GAME_FOLDER)
     for folder in candidates:
         for paks in (folder, folder / "acr" / "Content" / "Paks", folder / "Content" / "Paks"):
             if paks.is_dir() and any(paks.glob("*.utoc")):

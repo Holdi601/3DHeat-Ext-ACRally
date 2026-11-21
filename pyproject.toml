@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "heat3d-ext-acrally"
-version = "0.1.0"
+version = "0.2.0"
 description = "Assetto Corsa Rally stages from your own install as 3DHeat courses: the stage's ground, baked colour and placed models around a recorded lap"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -21,4 +21,4 @@ test = ["pytest>=8.0"]
 heat3d-acrally-maps = "heat3d_ext_acrally.cli:main"
 
 [tool.setuptools]
-packages = ["heat3d_ext_acrally"]
+packages = ["heat3d_ext_acrally", "heat3d_ext_acrally.app"]

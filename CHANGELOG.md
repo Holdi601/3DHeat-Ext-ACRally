@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0
+
+- A standalone program for Windows and Linux (Steam/Proton, Steam Deck included; no Python needed), built by
+  CI with a `SHA256SUMS` file. Without arguments it opens a window: what is found and what is missing
+  (install, 3DHeat GameFiles, Oodle library, disk space), the levels folder, the course around a run you pick,
+  the stage list, and updates. `--check --json` and `status --json` for scripts; a course is cut around a run,
+  so `extract` has nothing to extract from the install alone and says so.
+- Updates ask first (update now / later / skip this version) unless automatic updates were chosen
+  (`--auto-update`, the window's checkbox, or `HEAT3D_AUTO_UPDATE=1`).
+- The install is also found in Steam libraries on Linux (native and flatpak).
+
 ## 0.1.0
 
 - First version, moved out of 3DHeat GameFiles with its history (GameFiles'

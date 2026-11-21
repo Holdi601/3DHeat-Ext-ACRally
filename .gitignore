@@ -32,3 +32,4 @@ laps/
 .claude/
 *.jsonl
 *.log
+dist-standalone/

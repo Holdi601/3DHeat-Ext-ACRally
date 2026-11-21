@@ -1,0 +1,8 @@
+{
+  "spec": "heat3d_ext_acrally.standalone_spec",
+  "collect_submodules": ["numpy", "heat3d_gamefiles", "PIL", "lz4"],
+  "platforms": {
+    "windows-x64": {"build": true, "tested": false, "note": "courses around a recorded run; CI builds and smoke-runs, not yet checked on a real install"},
+    "linux-x64": {"build": true, "tested": false, "note": "Steam/Proton installs found (Steam Deck included); CI builds and smoke-runs; Oodle-compressed blocks need the Windows Oodle library, so such courses are exported on Windows"}
+  }
+}
