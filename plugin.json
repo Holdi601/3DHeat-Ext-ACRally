@@ -1,0 +1,64 @@
+{
+  "format": "3dheat-plugin",
+  "version": 1,
+  "id": "acrally",
+  "name": "Assetto Corsa Rally",
+  "kind": "game",
+  "what": "Stages from your install as courses, and your runs from the game's telemetry",
+  "games": [
+    {
+      "id": "acrally",
+      "name": "Assetto Corsa Rally"
+    }
+  ],
+  "platforms": [
+    "windows-x64",
+    "linux-x64"
+  ],
+  "icon": "icon-64.png",
+  "programs": [
+    {
+      "id": "heat3d-acrally",
+      "repo": "Holdi601/3DHeat-Ext-ACRally",
+      "verbs": {
+        "check": [
+          "--check",
+          "--json"
+        ],
+        "status": [
+          "status",
+          "--json"
+        ]
+      }
+    }
+  ],
+  "companions": [
+    "heat3d-gamecapture"
+  ],
+  "capabilities": {
+    "maps": {
+      "program": "heat3d-acrally",
+      "manual": true
+    },
+    "replays": {
+      "program": "heat3d-gamecapture",
+      "live": true
+    }
+  },
+  "requirements": [
+    {
+      "id": "game",
+      "label": "The game installed on this computer",
+      "auto": false
+    }
+  ],
+  "detect": {
+    "steam": [
+      "Assetto Corsa Rally"
+    ],
+    "processes": [
+      "acr.exe",
+      "AssettoCorsaRally.exe"
+    ]
+  }
+}
